@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run server/",
     "test:e2e": "playwright test",
     "test": "npm run test:unit && npm run test:e2e",
     "server:dev": "node --watch server/index.mjs",

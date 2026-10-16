@@ -1,0 +1,49 @@
+name: CI — Lint, Typecheck, Build, Playwright & Lighthouse
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality-and-build:
+    name: Quality, Unit Tests, E2E & Lighthouse CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run TypeScript & Astro Check
+        run: npm run typecheck
+
+      - name: Run Consultation Server Unit Tests (Vitest)
+        run: npm run test:unit
+
+      - name: Build Production Static Site
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright Smoke & Schema Tests
+        run: npm run test:e2e
+
+      - name: Run Lighthouse CI Budget Audit
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true

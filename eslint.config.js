@@ -3,7 +3,7 @@ export default [
     ignores: ['dist/**', '.astro/**', 'node_modules/**', 'playwright-report/**', 'test-results/**'],
   },
   {
-    files: ['**/*.{js,mjs,ts}'],
+    files: ['**/*.{js,mjs}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
