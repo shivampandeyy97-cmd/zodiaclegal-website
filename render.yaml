@@ -138,6 +138,12 @@ services:
         source: /lawyer-in-lucknow
         destination: /corporate-lawyers-in-lucknow/
       - type: redirect
+        source: /careers-internship
+        destination: /contact/
+      - type: redirect
+        source: /careers
+        destination: /contact/
+      - type: redirect
         source: /pages-sitemap.xml
         destination: /sitemap-index.xml
       - type: redirect
