@@ -12,10 +12,11 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
 
 <div
   id="consultation-form"
-  class="card-surface rounded border border-border-strong bg-paper-card p-6 shadow-sm sm:p-8"
+  class="card-surface relative overflow-hidden rounded-md border border-border-strong bg-paper-card p-6 shadow-md sm:p-8"
 >
+  <div class="brand-gradient-bar absolute inset-x-0 top-0 h-1.5" aria-hidden="true"></div>
   <div class="border-b border-border-subtle pb-4">
-    <p class="text-xs font-semibold tracking-widest text-brass uppercase">
+    <p class="text-xs font-bold tracking-widest text-brass uppercase">
       Confidential Consultation Request
     </p>
     <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary">
@@ -48,8 +49,11 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
 
     <div class:list={['grid gap-5', compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2']}>
       <div>
-        <label for="zl-full-name" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
-          Full Name <span class="text-brass" aria-hidden="true">*</span>
+        <label
+          for="zl-full-name"
+          class="block text-xs font-bold tracking-wide text-content-primary uppercase"
+        >
+          Full Name <span class="text-orange-600" aria-hidden="true">*</span>
         </label>
         <input
           type="text"
@@ -60,13 +64,16 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           maxlength="120"
           autocomplete="name"
           placeholder="e.g., Rajeshwar Prasad"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
         />
       </div>
 
       <div>
-        <label for="zl-phone" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
-          Phone / WhatsApp Number <span class="text-brass" aria-hidden="true">*</span>
+        <label
+          for="zl-phone"
+          class="block text-xs font-bold tracking-wide text-content-primary uppercase"
+        >
+          Phone / WhatsApp Number <span class="text-orange-600" aria-hidden="true">*</span>
         </label>
         <input
           type="tel"
@@ -76,15 +83,18 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           pattern="^[0-9+\\-\\s()]{8,20}$"
           autocomplete="tel"
           placeholder="+91 98XXX XXXXX"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
         />
       </div>
     </div>
 
     <div class:list={['grid gap-5', compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2']}>
       <div>
-        <label for="zl-email" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
-          Email Address <span class="text-brass" aria-hidden="true">*</span>
+        <label
+          for="zl-email"
+          class="block text-xs font-bold tracking-wide text-content-primary uppercase"
+        >
+          Email Address <span class="text-orange-600" aria-hidden="true">*</span>
         </label>
         <input
           type="email"
@@ -93,12 +103,15 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           required
           autocomplete="email"
           placeholder="name@company.com"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
         />
       </div>
 
       <div>
-        <label for="zl-organization" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
+        <label
+          for="zl-organization"
+          class="block text-xs font-bold tracking-wide text-content-primary uppercase"
+        >
           Company / Organization <span class="text-content-muted font-normal">(Optional)</span>
         </label>
         <input
@@ -108,20 +121,23 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           maxlength="140"
           autocomplete="organization"
           placeholder="Entity name or individual matter"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
         />
       </div>
     </div>
 
     <div>
-      <label for="zl-practice-area" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
-        Relevant Practice Area <span class="text-brass" aria-hidden="true">*</span>
+      <label
+        for="zl-practice-area"
+        class="block text-xs font-bold tracking-wide text-content-primary uppercase"
+      >
+        Relevant Practice Area <span class="text-orange-600" aria-hidden="true">*</span>
       </label>
       <select
         id="zl-practice-area"
         name="practiceArea"
         required
-        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
       >
         <option value="" disabled selected={!defaultPracticeArea}>
           Select a practice area...
@@ -138,8 +154,14 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
     </div>
 
     <div>
-      <label for="zl-message" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
-        Brief Matter Overview (Non-Confidential Summary) <span class="text-brass" aria-hidden="true">*</span>
+      <label
+        for="zl-message"
+        class="block text-xs font-bold tracking-wide text-content-primary uppercase"
+      >
+        Brief Matter Overview (Non-Confidential Summary) <span
+          class="text-orange-600"
+          aria-hidden="true">*</span
+        >
       </label>
       <textarea
         id="zl-message"
@@ -149,7 +171,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
         minlength="20"
         maxlength="2500"
         placeholder="State the nature of the transaction, contract, or dispute, the relevant forum/city in Uttar Pradesh, and any statutory deadline..."
-        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
       ></textarea>
     </div>
 
@@ -160,7 +182,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
         name="bciConsent"
         value="accepted"
         required
-        class="mt-1 h-4 w-4 shrink-0 rounded border-border-strong text-ink focus:ring-brass"
+        class="mt-1 h-4 w-4 shrink-0 rounded border-border-strong text-orange-600 focus:ring-orange-500"
       />
       <label for="zl-bci-consent" class="text-xs leading-relaxed text-content-secondary">
         I confirm that this inquiry is made of my own volition to seek information or schedule a
@@ -187,12 +209,15 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
       <button
         type="submit"
         id="zl-submit-btn"
-        class="btn-primary rounded-sm bg-ink px-6 py-3 text-xs font-semibold tracking-wider text-content-inverse uppercase transition-colors hover:bg-ink-elevated dark:bg-brass dark:text-ink"
+        class="btn-primary rounded-sm bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 px-6 py-3 text-xs font-bold tracking-wider text-white uppercase shadow-md transition-all hover:from-amber-400 hover:to-yellow-300 hover:text-black"
       >
         Submit Consultation Request
       </button>
       <p class="text-xs text-content-muted">
-        Direct Desk: <a href={`tel:${SITE_CONFIG.nap.phoneE164}`} class="font-medium text-content-primary underline">{SITE_CONFIG.nap.phoneDisplay}</a>
+        Direct Desk: <a
+          href={`tel:${SITE_CONFIG.nap.phoneE164}`}
+          class="font-bold text-brass underline">{SITE_CONFIG.nap.phoneDisplay}</a
+        >
       </p>
     </div>
   </form>
@@ -212,10 +237,12 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
       if (!statusBox || !statusIcon || !statusText) return;
       statusBox.hidden = false;
       if (type === 'error') {
-        statusBox.className = 'rounded border border-red-800 bg-red-50 p-3.5 text-sm text-red-900 dark:bg-red-950/60 dark:text-red-200';
+        statusBox.className =
+          'rounded border border-red-800 bg-red-50 p-3.5 text-sm text-red-900 dark:bg-red-950/60 dark:text-red-200';
         statusIcon.textContent = '⚠';
       } else {
-        statusBox.className = 'rounded border border-green-800 bg-green-50 p-3.5 text-sm text-green-900 dark:bg-green-950/60 dark:text-green-200';
+        statusBox.className =
+          'rounded border border-green-800 bg-green-50 p-3.5 text-sm text-green-900 dark:bg-green-950/60 dark:text-green-200';
         statusIcon.textContent = '✓';
       }
       statusText.textContent = message;

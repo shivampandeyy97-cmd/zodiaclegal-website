@@ -10,9 +10,12 @@ import { SITE_CONFIG } from '../data/siteConfig';
   canonicalPath="/disclaimer/"
   lastReviewed="2026-10-16"
 >
-  <section class="bg-ink py-12 text-content-inverse border-b border-stone-800">
+  <section class="hero-obsidian-glow py-12 text-white border-b border-zinc-800">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-      <Breadcrumbs items={[{ label: 'BCI Legal Disclaimer', href: '/disclaimer/' }]} invertText={true} />
+      <Breadcrumbs
+        items={[{ label: 'BCI Legal Disclaimer', href: '/disclaimer/' }]}
+        invertText={true}
+      />
       <h1 class="mt-2 font-serif text-3xl font-semibold text-white">
         Bar Council of India Regulatory Disclaimer
       </h1>
@@ -28,8 +31,8 @@ import { SITE_CONFIG } from '../data/siteConfig';
         <h2>Statutory Non-Solicitation Notice</h2>
         <p>
           Under <strong>Rule 36, Chapter II, Part VI of the Bar Council of India Rules</strong> framed
-          under the Advocates Act, 1961 (and in accordance with the judgment of the Hon’ble Supreme
-          Court of India in <em>Bar Council of India v. A.K. Balaji</em>), advocates in India are
+          under the Advocates Act, 1961 (and in accordance with the judgment of the Hon’ble Supreme Court
+          of India in <em>Bar Council of India v. A.K. Balaji</em>), advocates in India are
           prohibited from soliciting work or advertising directly or indirectly.
         </p>
         <p>
@@ -38,14 +41,14 @@ import { SITE_CONFIG } from '../data/siteConfig';
         </p>
         <ol>
           <li>
-            The visitor is seeking factual information regarding <strong>{SITE_CONFIG.name}</strong>,
-            its practice areas, office contact details, and statutory publications of the visitor’s
-            own accord and volition.
+            The visitor is seeking factual information regarding <strong>{SITE_CONFIG.name}</strong
+            >, its practice areas, office contact details, and statutory publications of the
+            visitor’s own accord and volition.
           </li>
           <li>
             There has been no advertisement, personal communication, solicitation, invitation, or
-            inducement of any sort whatsoever from {SITE_CONFIG.name} or any of its members to
-            solicit work through this website.
+            inducement of any sort whatsoever from {SITE_CONFIG.name} or any of its members to solicit
+            work through this website.
           </li>
           <li>
             Any information obtained or downloaded from this website does not constitute legal
@@ -53,8 +56,8 @@ import { SITE_CONFIG } from '../data/siteConfig';
             advocate-client relationship.
           </li>
           <li>
-            {SITE_CONFIG.name} makes no comparative claims, fee-bait representations, or guarantees
-            regarding the outcome of any legal proceeding.
+            {SITE_CONFIG.name} makes no comparative claims, fee-bait representations, or guarantees regarding
+            the outcome of any legal proceeding.
           </li>
         </ol>
         <p class="text-xs text-content-muted">

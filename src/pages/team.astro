@@ -2,130 +2,78 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import TeamSection from '../components/TeamSection.astro';
 import ConsultationForm from '../components/ConsultationForm.astro';
 import { SITE_CONFIG } from '../data/siteConfig';
 
-const desks = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+const members = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
 
 const teamSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'Zodiac Legal Practice Desks & Counsel',
-  itemListElement: desks.map((desk, index) => ({
+  name: 'Zodiac Legal Leadership & Legal Team',
+  itemListElement: members.map((member, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     item: {
-      '@type': 'OrganizationRole',
-      roleName: desk.data.role,
-      description: desk.data.summary,
+      '@type': 'Person',
+      name: member.data.name,
+      jobTitle: member.data.role,
+      image: new URL(member.data.image, SITE_CONFIG.url).toString(),
+      worksFor: {
+        '@id': `${SITE_CONFIG.url}/#legalservice`,
+      },
+      description: member.data.summary,
     },
   })),
 };
 ---
 
 <BaseLayout
-  title="Our Team & Counsel | Zodiac Legal Lucknow"
-  description="Meet the Corporate, Commercial, Litigation, Debt Recovery, and UP-RERA Practice Desks at Zodiac Legal in Vikas Nagar, Lucknow, Uttar Pradesh."
+  title="Our Team — Shalini Pandey, Sakshi Pandey, Shiv Kumar Pandey"
+  description="Meet the Zodiac Legal team in Lucknow: Shalini Pandey (Head), Sakshi Pandey (Legal Assistant), and Shiv Kumar Pandey (Principal Advisor)."
   canonicalPath="/team/"
   lastReviewed="2026-10-16"
   extraSchema={teamSchema}
 >
-  <section class="bg-ink py-14 text-content-inverse border-b border-stone-800">
+  <section class="hero-obsidian-glow py-14 text-white border-b border-zinc-800">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-      <Breadcrumbs items={[{ label: 'Counsel & Practice Desks', href: '/team/' }]} invertText={true} />
-      <p class="text-xs font-semibold tracking-widest text-brass-light uppercase">
-        Advocates &amp; Corporate Counsel
+      <Breadcrumbs items={[{ label: 'Our Team', href: '/team/' }]} invertText={true} />
+      <p class="text-xs font-bold tracking-widest text-amber-400 uppercase">
+        Leadership, Counsel &amp; Legal Operations
       </p>
       <h1 class="mt-2 font-serif text-3xl font-semibold text-white sm:text-4xl">
-        Practice Desks &amp; Legal Counsel
+        Meet the <span class="brand-gradient-text">Zodiac Legal</span> Team
       </h1>
-      <p class="mt-4 max-w-3xl text-base leading-relaxed text-stone-300">
-        Zodiac Legal organizes its transactional and litigation work across three specialized
-        practice desks in Lucknow, ensuring every matter is reviewed by counsel familiar with the
-        governing statute and forum.
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-zinc-300">
+        Led by Head of Practice <strong>Shalini Pandey</strong>, Principal Advisor{' '}
+        <strong>Shiv Kumar Pandey</strong>, and Legal Assistant <strong>Sakshi Pandey</strong>, our
+        Lucknow desk delivers disciplined corporate, real estate (UP-RERA), contract, and litigation
+        support across Uttar Pradesh.
       </p>
     </div>
   </section>
 
-  <section class="py-16">
+  <!-- Full-Detail Team Section -->
+  <TeamSection showFullDetails={true} />
+
+  <section class="py-16 bg-paper">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8 space-y-10">
-      {
-        desks.map((member) => (
-          <article class="card-surface rounded border border-border-strong bg-paper-card p-6 sm:p-8">
-            <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-border-subtle pb-4">
-              <div>
-                <p class="text-xs font-semibold tracking-wider text-brass uppercase">
-                  {member.data.desk}
-                </p>
-                <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary">
-                  {member.data.name}
-                </h2>
-              </div>
-              <span class="rounded bg-paper-warm px-3 py-1 text-xs font-medium text-content-secondary">
-                {member.data.role}
-              </span>
-            </div>
-
-            <p class="mt-4 text-sm leading-relaxed text-content-secondary">
-              {member.data.summary}
-            </p>
-
-            <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div>
-                <h3 class="text-xs font-semibold tracking-wider text-content-primary uppercase">
-                  Core Mandate Focus
-                </h3>
-                <ul class="mt-2 space-y-1.5 text-xs text-content-secondary">
-                  {member.data.practiceFocus.map((item) => (
-                    <li>• {item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 class="text-xs font-semibold tracking-wider text-content-primary uppercase">
-                  Primary Forums
-                </h3>
-                <ul class="mt-2 space-y-1.5 text-xs text-content-secondary">
-                  {member.data.forums.map((forum) => (
-                    <li>• {forum}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 class="text-xs font-semibold tracking-wider text-content-primary uppercase">
-                  Credentials &amp; Bar Enrolment
-                </h3>
-                <ul class="mt-2 space-y-1.5 text-xs text-content-secondary">
-                  {member.data.qualifications.map((q) => (
-                    <li>• {q}</li>
-                  ))}
-                  <li>• Languages: {member.data.languages.join(', ')}</li>
-                </ul>
-                <p class="mt-3 rounded border border-border-subtle bg-paper-warm p-2.5 text-[11px] text-content-muted">
-                  {member.data.barEnrolmentNote}
-                </p>
-              </div>
-            </div>
-          </article>
-        ))
-      }
-
-      <div class="rounded border border-border-subtle bg-paper-warm p-6 text-xs leading-relaxed text-content-secondary">
+      <div
+        class="rounded border-s-4 border-orange-500 bg-paper-warm p-6 text-xs leading-relaxed text-content-secondary"
+      >
         <p class="font-semibold text-content-primary">
-          Regulatory Note on Advocate Enrolment &amp; Verification:
+          Regulatory Note on Bar Council of India Rule 36 Compliance:
         </p>
         <p class="mt-1">
-          In adherence to Rule 36 of the Bar Council of India Rules and data-accuracy standards, no
-          unverified individual biographies or Bar Council enrolment numbers are published prior to
-          administrative verification. Individual Advocate names and Bar Council of Uttar Pradesh
-          enrolment details are furnished directly on engagement letters and vakalatnamas at the time
-          of formal instruction at {SITE_CONFIG.name}.
+          In adherence to Rule 36 of the Bar Council of India Rules, team profiles state factual
+          roles and practice areas without comparative claims or solicitation. Individual
+          vakalatnama and Bar Council of Uttar Pradesh enrolment particulars are furnished directly
+          upon formal instruction at {SITE_CONFIG.name}.
         </p>
       </div>
 
-      <div class="mx-auto max-w-3xl pt-6">
+      <div class="mx-auto max-w-3xl pt-4">
         <ConsultationForm />
       </div>
     </div>

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamSection from '../components/TeamSection.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import ConsultationForm from '../components/ConsultationForm.astro';
 import { SITE_CONFIG } from '../data/siteConfig';
@@ -48,20 +49,24 @@ const processSteps = [
   canonicalPath="/"
   lastReviewed="2026-10-16"
 >
-  <!-- Dark Ink Hero Section -->
-  <section class="relative overflow-hidden bg-ink text-content-inverse border-b border-stone-800">
+  <!-- Obsidian Black, Sovereign Orange & Solar Yellow Hero Section -->
+  <section class="hero-obsidian-glow relative overflow-hidden border-b border-zinc-800 text-white">
     <div class="mx-auto max-w-container px-4 py-16 sm:px-6 lg:py-24 lg:px-8">
       <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
         <div class="lg:col-span-7">
-          <p class="inline-flex items-center gap-2 rounded-sm border border-stone-700 bg-ink-elevated px-3 py-1 text-xs font-semibold tracking-widest text-brass-light uppercase">
-            <span>Vikas Nagar, Lucknow • Uttar Pradesh</span>
-          </p>
-          <h1
-            class="mt-6 font-serif text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.85rem] lg:leading-[1.15]"
+          <div
+            class="inline-flex items-center gap-2 rounded-full border border-orange-500/40 bg-orange-500/10 px-4 py-1.5 text-xs font-bold tracking-widest text-amber-400 uppercase"
           >
-            Corporate Counsel, Commercial Contracts &amp; Statutory Representation in Lucknow.
+            <span class="h-2 w-2 rounded-full bg-amber-400" aria-hidden="true"></span>
+            <span>Vikas Nagar, Lucknow • Uttar Pradesh</span>
+          </div>
+          <h1
+            class="mt-6 font-serif text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[3rem] lg:leading-[1.12]"
+          >
+            Corporate Counsel, Commercial Contracts &amp;{' '}
+            <span class="brand-gradient-text">Statutory Representation</span> in Lucknow.
           </h1>
-          <p class="mt-5 max-w-2xl text-base leading-relaxed text-stone-300 sm:text-lg">
+          <p class="mt-5 max-w-2xl text-base leading-relaxed text-zinc-300 sm:text-lg">
             Zodiac Legal advises companies, promoters, startups, financial creditors, and property
             owners across Uttar Pradesh on corporate governance, contract architecture, UP-RERA,
             arbitration, and debt recovery.
@@ -70,78 +75,169 @@ const processSteps = [
           <div class="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="/contact/#consultation-form"
-              class="rounded-sm bg-brass-light px-6 py-3.5 text-xs font-semibold tracking-wider text-ink uppercase transition-colors hover:bg-white"
+              class="rounded-sm bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 px-7 py-3.5 text-xs font-bold tracking-wider text-white uppercase shadow-lg transition-all hover:from-amber-400 hover:to-yellow-300 hover:text-black"
             >
               Book a Consultation
             </a>
             <a
-              href="/practice-areas/"
-              class="rounded-sm border border-stone-600 bg-ink-elevated px-6 py-3.5 text-xs font-semibold tracking-wider text-stone-100 uppercase transition-colors hover:border-brass-light hover:text-brass-light"
+              href="#team-section"
+              class="rounded-sm border border-amber-400/50 bg-zinc-900/90 px-6 py-3.5 text-xs font-bold tracking-wider text-amber-300 uppercase transition-colors hover:border-amber-400 hover:bg-zinc-800"
             >
-              Explore Practice Areas
+              Meet Our Team
+            </a>
+            <a
+              href="/practice-areas/"
+              class="rounded-sm border border-zinc-700 bg-zinc-900/60 px-6 py-3.5 text-xs font-semibold tracking-wider text-zinc-200 uppercase transition-colors hover:border-orange-500 hover:text-white"
+            >
+              9 Practice Areas
             </a>
           </div>
 
-          <p class="mt-6 text-xs text-stone-400">
+          <p class="mt-6 text-xs text-zinc-400">
             Informational only; not legal advice or solicitation under Rule 36 of the Bar Council of
             India Rules.
           </p>
         </div>
 
         <div class="hidden lg:col-span-5 lg:block">
-          <div class="rounded border border-stone-800 bg-ink-elevated p-3 shadow-2xl">
+          <div
+            class="relative rounded-md border border-orange-500/40 bg-zinc-950/90 p-5 shadow-[0_25px_60px_-15px_rgba(234,88,12,0.35)]"
+          >
+            <div
+              class="brand-gradient-bar absolute inset-x-0 top-0 h-1.5 rounded-t-md"
+              aria-hidden="true"
+            >
+            </div>
+            <!-- Official Brand Showcase Card + Architectural Geometry -->
+            <div
+              class="mb-4 flex items-center justify-between rounded bg-white px-5 py-3 shadow-inner"
+            >
+              <img
+                src="/brand/logo.png"
+                alt="Zodiac Legal Official Brand Logo"
+                width="215"
+                height="108"
+                fetchpriority="high"
+                class="h-14 w-auto"
+              />
+              <div class="text-right">
+                <p class="text-[10px] font-bold tracking-widest text-orange-600 uppercase">
+                  Established Practice
+                </p>
+                <p class="font-serif text-xs font-bold text-zinc-900">Lucknow, UP</p>
+              </div>
+            </div>
             <img
               src="/images/architectural-grid.svg"
               alt="Architectural structural geometry representing Zodiac Legal's practice framework"
               width="800"
               height="600"
-              fetchpriority="high"
-              class="h-auto w-full rounded-sm"
+              class="h-auto w-full rounded-sm border border-zinc-800"
             />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Verifiable Scope & Jurisdictional Strip (No invented stats or superlative claims) -->
-    <div class="border-t border-stone-800 bg-ink-elevated/90">
+    <!-- Verifiable Scope & Jurisdictional Strip -->
+    <div class="border-t border-zinc-800 bg-zinc-950/90">
       <div class="mx-auto max-w-container px-4 py-6 sm:px-6 lg:px-8">
         <dl class="grid grid-cols-2 gap-6 sm:grid-cols-4">
-          <div class="border-s-2 border-brass-light ps-4">
-            <dt class="text-xs font-medium tracking-wider text-stone-400 uppercase">
+          <div class="border-s-4 border-orange-500 ps-4">
+            <dt class="text-xs font-semibold tracking-wider text-amber-400 uppercase">
               Practice Desks
             </dt>
             <dd class="mt-1 font-serif text-xl font-semibold text-white">9 Core Areas</dd>
           </div>
-          <div class="border-s-2 border-brass-light ps-4">
-            <dt class="text-xs font-medium tracking-wider text-stone-400 uppercase">
-              Primary Seat
+          <div class="border-s-4 border-amber-400 ps-4">
+            <dt class="text-xs font-semibold tracking-wider text-amber-400 uppercase">
+              Leadership Team
             </dt>
-            <dd class="mt-1 font-serif text-xl font-semibold text-white">Lucknow, UP</dd>
+            <dd class="mt-1 font-serif text-xl font-semibold text-white">3 Core Pillars</dd>
           </div>
-          <div class="border-s-2 border-brass-light ps-4">
-            <dt class="text-xs font-medium tracking-wider text-stone-400 uppercase">
+          <div class="border-s-4 border-orange-500 ps-4">
+            <dt class="text-xs font-semibold tracking-wider text-amber-400 uppercase">
               Statutory Guides
             </dt>
             <dd class="mt-1 font-serif text-xl font-semibold text-white">10 In-Depth Briefs</dd>
           </div>
-          <div class="border-s-2 border-brass-light ps-4">
-            <dt class="text-xs font-medium tracking-wider text-stone-400 uppercase">
-              Languages
+          <div class="border-s-4 border-amber-400 ps-4">
+            <dt class="text-xs font-semibold tracking-wider text-amber-400 uppercase">
+              Primary Seat
             </dt>
-            <dd class="mt-1 font-serif text-xl font-semibold text-white">English &amp; Hindi</dd>
+            <dd class="mt-1 font-serif text-xl font-semibold text-white">Lucknow, UP</dd>
           </div>
         </dl>
       </div>
     </div>
   </section>
 
+  <!-- Practice Areas Grid -->
+  <section class="border-b border-border-subtle bg-paper-warm py-16 sm:py-20">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="text-xs font-bold tracking-widest text-brass uppercase">Areas of Practice</p>
+          <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
+            Practice Desks &amp; Statutory Representation
+          </h2>
+        </div>
+        <a href="/practice-areas/" class="text-sm font-bold text-brass hover:underline">
+          View Complete Practice Index →
+        </a>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          practiceAreas.map((area, index) => (
+            <article class="card-surface relative flex flex-col justify-between overflow-hidden rounded-md border border-border-subtle bg-paper-card p-6 hover:border-orange-500">
+              <div class="brand-gradient-bar absolute inset-x-0 top-0 h-1" aria-hidden="true" />
+              <div>
+                <div class="flex items-center justify-between">
+                  <p class="text-xs font-bold tracking-wider text-brass uppercase">
+                    {area.data.category}
+                  </p>
+                  <span class="font-mono text-xs font-bold text-amber-600 dark:text-amber-400">
+                    0{index + 1}
+                  </span>
+                </div>
+                <h3 class="mt-2 font-serif text-xl font-semibold text-content-primary">
+                  <a href={`/practice-areas/${area.slug}/`} class="hover:text-brass">
+                    {area.data.title}
+                  </a>
+                </h3>
+                <p class="mt-3 text-sm leading-relaxed text-content-secondary">
+                  {area.data.summary}
+                </p>
+              </div>
+              <div class="mt-6 border-t border-border-subtle pt-4">
+                <p class="text-xs text-content-muted">
+                  <strong class="text-content-primary">Key Statutes:</strong>{' '}
+                  {area.data.statutesCovered.slice(0, 2).join(' • ')}
+                </p>
+                <a
+                  href={`/practice-areas/${area.slug}/`}
+                  class="mt-3 inline-flex items-center text-xs font-bold tracking-wider text-brass uppercase hover:underline"
+                >
+                  Read Practice Guide &amp; Checklist →
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Dedicated Team Section (Shalini Pandey, Sakshi Pandey, Shiv Kumar Pandey) -->
+  <TeamSection showFullDetails={false} />
+
   <!-- Answer-First Firm Overview & Legacy Preservation Section -->
-  <section class="border-b border-border-subtle bg-paper py-16 sm:py-20">
+  <section class="section-deferred border-b border-border-subtle bg-paper py-16 sm:py-20">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div class="lg:col-span-5">
-          <p class="text-xs font-semibold tracking-widest text-brass uppercase">
+          <p class="text-xs font-bold tracking-widest text-brass uppercase">
             Institutional Overview
           </p>
           <h2 class="mt-2 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
@@ -150,7 +246,9 @@ const processSteps = [
           <p class="mt-4 text-sm leading-relaxed text-content-secondary">
             {SITE_CONFIG.descriptions.short50}
           </p>
-          <div class="mt-6 rounded border border-border-subtle bg-paper-warm p-4 text-xs leading-relaxed text-content-secondary">
+          <div
+            class="mt-6 rounded border-s-4 border-orange-500 bg-paper-warm p-4 text-xs leading-relaxed text-content-secondary"
+          >
             <p class="font-semibold text-content-primary">Preserved Legacy Practice Note:</p>
             <p class="mt-1">
               Zodiac Legal operates from Vikas Nagar, Lucknow, Uttar Pradesh (associated in regional
@@ -208,69 +306,11 @@ const processSteps = [
     </div>
   </section>
 
-  <!-- Practice Areas Grid -->
+  <!-- Process Timeline ("How We Work") -->
   <section class="section-deferred border-b border-border-subtle bg-paper-warm py-16 sm:py-20">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <p class="text-xs font-semibold tracking-widest text-brass uppercase">
-            Areas of Practice
-          </p>
-          <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
-            Practice Desks &amp; Statutory Representation
-          </h2>
-        </div>
-        <a
-          href="/practice-areas/"
-          class="text-sm font-semibold text-brass hover:underline"
-        >
-          View Complete Practice Index →
-        </a>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {
-          practiceAreas.map((area) => (
-            <article class="card-surface flex flex-col justify-between rounded border border-border-subtle bg-paper-card p-6 transition-colors hover:border-border-strong">
-              <div>
-                <p class="text-xs font-semibold tracking-wider text-brass uppercase">
-                  {area.data.category}
-                </p>
-                <h3 class="mt-2 font-serif text-xl font-semibold text-content-primary">
-                  <a href={`/practice-areas/${area.slug}/`} class="hover:text-brass">
-                    {area.data.title}
-                  </a>
-                </h3>
-                <p class="mt-3 text-sm leading-relaxed text-content-secondary">
-                  {area.data.summary}
-                </p>
-              </div>
-              <div class="mt-6 border-t border-border-subtle pt-4">
-                <p class="text-xs text-content-muted">
-                  <strong class="text-content-primary">Key Statutes:</strong>{' '}
-                  {area.data.statutesCovered.slice(0, 2).join(' • ')}
-                </p>
-                <a
-                  href={`/practice-areas/${area.slug}/`}
-                  class="mt-3 inline-flex items-center text-xs font-semibold tracking-wider text-brass uppercase hover:underline"
-                >
-                  Read Practice Guide &amp; Checklist →
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Timeline ("How We Work") -->
-  <section class="section-deferred border-b border-border-subtle bg-paper py-16 sm:py-20">
-    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl">
-        <p class="text-xs font-semibold tracking-widest text-brass uppercase">
-          Procedural Clarity
-        </p>
+        <p class="text-xs font-bold tracking-widest text-brass uppercase">Procedural Clarity</p>
         <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
           How does Zodiac Legal structure a legal engagement?
         </h2>
@@ -283,11 +323,12 @@ const processSteps = [
       <ol class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {
           processSteps.map((step) => (
-            <li class="card-surface rounded border border-border-subtle bg-paper-card p-6">
-              <span class="font-mono text-xs font-bold tracking-widest text-brass">
+            <li class="card-surface relative overflow-hidden rounded-md border border-border-subtle bg-paper-card p-6">
+              <div class="brand-gradient-bar absolute inset-x-0 top-0 h-1" aria-hidden="true" />
+              <span class="inline-block rounded bg-orange-500/10 px-2.5 py-0.5 font-mono text-xs font-bold tracking-widest text-brass">
                 STAGE {step.number}
               </span>
-              <h3 class="mt-2 font-serif text-lg font-semibold text-content-primary">
+              <h3 class="mt-3 font-serif text-lg font-semibold text-content-primary">
                 {step.title}
               </h3>
               <p class="mt-2.5 text-sm leading-relaxed text-content-secondary">
@@ -301,26 +342,28 @@ const processSteps = [
   </section>
 
   <!-- Representative Mandates & Jurisdictional Coverage -->
-  <section class="section-deferred border-b border-border-subtle bg-paper-warm py-16 sm:py-20">
+  <section class="section-deferred border-b border-border-subtle bg-paper py-16 sm:py-20">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div class="lg:col-span-6">
-          <p class="text-xs font-semibold tracking-widest text-brass uppercase">
+          <p class="text-xs font-bold tracking-widest text-brass uppercase">
             Judicial &amp; Regulatory Forums
           </p>
           <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
             Courts, Tribunals &amp; Authorities in Uttar Pradesh
           </h2>
           <p class="mt-3 text-sm leading-relaxed text-content-secondary">
-            Our Lucknow practice desks appear before and coordinate filings across the primary judicial,
-            quasi-judicial, and regulatory authorities governing commercial operations in Uttar
-            Pradesh:
+            Our Lucknow practice desks appear before and coordinate filings across the primary
+            judicial, quasi-judicial, and regulatory authorities governing commercial operations in
+            Uttar Pradesh:
           </p>
           <ul class="mt-5 space-y-2.5 text-sm text-content-secondary">
             {
               SITE_CONFIG.jurisdictions.map((forum) => (
                 <li class="flex items-start gap-2.5">
-                  <span class="mt-1 text-brass" aria-hidden="true">▪</span>
+                  <span class="mt-1 text-orange-500 font-bold" aria-hidden="true">
+                    ▪
+                  </span>
                   <span>{forum}</span>
                 </li>
               ))
@@ -329,7 +372,7 @@ const processSteps = [
         </div>
 
         <div class="lg:col-span-6">
-          <p class="text-xs font-semibold tracking-widest text-brass uppercase">
+          <p class="text-xs font-bold tracking-widest text-brass uppercase">
             Representative Work Scope
           </p>
           <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
@@ -343,9 +386,7 @@ const processSteps = [
               mandates.map((item) => (
                 <div class="card-surface rounded border border-border-subtle bg-paper-card p-5">
                   <div class="flex flex-wrap items-center justify-between gap-2">
-                    <span class="text-xs font-semibold text-brass uppercase">
-                      {item.data.sector}
-                    </span>
+                    <span class="text-xs font-bold text-brass uppercase">{item.data.sector}</span>
                     <span class="text-xs text-content-muted">{item.data.clientLabel}</span>
                   </div>
                   <h3 class="mt-1.5 font-serif text-base font-semibold text-content-primary">
@@ -362,18 +403,16 @@ const processSteps = [
   </section>
 
   <!-- Latest Statutory Insights -->
-  <section class="section-deferred border-b border-border-subtle bg-paper py-16 sm:py-20">
+  <section class="section-deferred border-b border-border-subtle bg-paper-warm py-16 sm:py-20">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p class="text-xs font-semibold tracking-widest text-brass uppercase">
-            Knowledge Hub
-          </p>
+          <p class="text-xs font-bold tracking-widest text-brass uppercase">Knowledge Hub</p>
           <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
             Statutory Guides &amp; Legal Insights
           </h2>
         </div>
-        <a href="/insights/" class="text-sm font-semibold text-brass hover:underline">
+        <a href="/insights/" class="text-sm font-bold text-brass hover:underline">
           Browse All 10 Legal Guides →
         </a>
       </div>
@@ -384,7 +423,7 @@ const processSteps = [
             <article class="card-surface flex flex-col justify-between rounded border border-border-subtle bg-paper-card p-6">
               <div>
                 <div class="flex items-center gap-2 text-xs text-content-muted">
-                  <span class="font-semibold text-brass uppercase">{post.data.category}</span>
+                  <span class="font-bold text-brass uppercase">{post.data.category}</span>
                   <span aria-hidden="true">•</span>
                   <span>{post.data.readingTime}</span>
                 </div>
@@ -399,10 +438,7 @@ const processSteps = [
               </div>
               <div class="mt-5 border-t border-border-subtle pt-3 flex items-center justify-between text-xs text-content-muted">
                 <span>Reviewed: {post.data.lastReviewed}</span>
-                <a
-                  href={`/insights/${post.slug}/`}
-                  class="font-semibold text-brass hover:underline"
-                >
+                <a href={`/insights/${post.slug}/`} class="font-bold text-brass hover:underline">
                   Read Guide →
                 </a>
               </div>
@@ -414,11 +450,11 @@ const processSteps = [
   </section>
 
   <!-- Frequently Asked Questions & Consultation Form -->
-  <section class="section-deferred bg-paper-warm py-16 sm:py-20">
+  <section class="section-deferred bg-paper py-16 sm:py-20">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div class="lg:col-span-6">
-          <p class="text-xs font-semibold tracking-widest text-brass uppercase">
+          <p class="text-xs font-bold tracking-widest text-brass uppercase">
             Direct Answers (AEO / FAQ)
           </p>
           <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary sm:text-3xl">
@@ -430,7 +466,7 @@ const processSteps = [
           </p>
           <FaqAccordion items={homeFaqs} groupName="home-faq" emitSchema={true} />
           <div class="mt-6">
-            <a href="/faq/" class="text-sm font-semibold text-brass hover:underline">
+            <a href="/faq/" class="text-sm font-bold text-brass hover:underline">
               View All Frequently Asked Questions →
             </a>
           </div>

@@ -3,57 +3,72 @@ import { PRACTICE_AREAS_NAV, SITE_CONFIG } from '../data/siteConfig';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-auto border-t border-border-subtle bg-ink text-stone-300">
+<footer class="mt-auto border-t border-zinc-800 bg-ink text-zinc-300">
+  <div class="brand-gradient-bar h-1 w-full" aria-hidden="true"></div>
   <div class="mx-auto max-w-container px-4 py-14 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
       <!-- Column 1: Firm Identity & Verifiable NAP -->
       <div class="lg:col-span-4">
-        <a href="/" class="inline-block" aria-label="Zodiac Legal Home">
+        <a
+          href="/"
+          class="inline-block rounded bg-white px-3.5 py-2 shadow-md ring-2 ring-amber-400/60"
+          aria-label="Zodiac Legal Home"
+        >
           <img
-            src="/brand/logo-light.svg"
+            src="/brand/logo.png"
             alt="Zodiac Legal"
-            width="235"
-            height="40"
+            width="179"
+            height="90"
             loading="lazy"
-            class="h-10 w-auto"
+            class="h-12 w-auto"
           />
         </a>
-        <p class="mt-4 text-sm leading-relaxed text-stone-300">
+        <p class="mt-4 text-sm leading-relaxed text-zinc-300">
           {SITE_CONFIG.descriptions.short50}
         </p>
-        <address class="mt-5 not-italic text-sm space-y-1.5 text-stone-300">
+        <address class="mt-5 not-italic text-sm space-y-1.5 text-zinc-300">
           <p class="font-semibold text-white">{SITE_CONFIG.nap.firmName}</p>
           <p>{SITE_CONFIG.nap.streetAddress}</p>
           <p>
-            {SITE_CONFIG.nap.locality}, {SITE_CONFIG.nap.region} – {SITE_CONFIG.nap.postalCode},{' '}
+            {SITE_CONFIG.nap.locality}, {SITE_CONFIG.nap.region} – {SITE_CONFIG.nap.postalCode},{
+              ' '
+            }
             {SITE_CONFIG.nap.country}
           </p>
           <p class="pt-1">
-            <span class="text-stone-400">Tel: </span>
-            <a href={`tel:${SITE_CONFIG.nap.phoneE164}`} class="text-brass-light hover:underline">
+            <span class="text-zinc-400">Tel: </span>
+            <a
+              href={`tel:${SITE_CONFIG.nap.phoneE164}`}
+              class="font-semibold text-amber-400 hover:underline"
+            >
               {SITE_CONFIG.nap.phoneDisplay}
             </a>
           </p>
           <p>
-            <span class="text-stone-400">Email: </span>
-            <a href={`mailto:${SITE_CONFIG.nap.email}`} class="text-brass-light hover:underline">
+            <span class="text-zinc-400">Email: </span>
+            <a
+              href={`mailto:${SITE_CONFIG.nap.email}`}
+              class="font-semibold text-amber-400 hover:underline"
+            >
               {SITE_CONFIG.nap.email}
             </a>
           </p>
-          <p class="text-xs text-stone-400 pt-1">{SITE_CONFIG.nap.hours}</p>
+          <p class="text-xs text-zinc-400 pt-1">{SITE_CONFIG.nap.hours}</p>
         </address>
       </div>
 
       <!-- Column 2: Practice Areas -->
       <div class="lg:col-span-4">
-        <h2 class="font-serif text-base font-semibold tracking-wide text-white">Practice Areas</h2>
+        <h2 class="font-serif text-base font-semibold tracking-wide text-amber-400">
+          Practice Areas
+        </h2>
         <ul class="mt-4 space-y-2 text-sm">
           {
             PRACTICE_AREAS_NAV.map((area) => (
               <li>
                 <a
                   href={`/practice-areas/${area.slug}/`}
-                  class="text-stone-300 transition-colors hover:text-brass-light"
+                  class="text-zinc-300 transition-colors hover:text-orange-400"
                 >
                   {area.title}
                 </a>
@@ -65,55 +80,52 @@ const currentYear = new Date().getFullYear();
 
       <!-- Column 3: Institutional Links & Local Presence -->
       <div class="lg:col-span-4">
-        <h2 class="font-serif text-base font-semibold tracking-wide text-white">
+        <h2 class="font-serif text-base font-semibold tracking-wide text-amber-400">
           Firm &amp; Statutory Resources
         </h2>
         <ul class="mt-4 space-y-2 text-sm">
           <li>
-            <a href="/about/" class="text-stone-300 hover:text-brass-light">About Zodiac Legal</a>
+            <a href="/about/" class="text-zinc-300 hover:text-orange-400">About Zodiac Legal</a>
           </li>
           <li>
-            <a href="/team/" class="text-stone-300 hover:text-brass-light">
-              Practice Desks &amp; Counsel
+            <a href="/team/" class="text-zinc-300 hover:text-orange-400">
+              Leadership &amp; Legal Team
             </a>
           </li>
           <li>
-            <a href="/insights/" class="text-stone-300 hover:text-brass-light">
+            <a href="/insights/" class="text-zinc-300 hover:text-orange-400">
               Legal Insights &amp; Statutory Guides
             </a>
           </li>
           <li>
-            <a href="/faq/" class="text-stone-300 hover:text-brass-light">
+            <a href="/faq/" class="text-zinc-300 hover:text-orange-400">
               Frequently Asked Questions (FAQ)
             </a>
           </li>
           <li>
-            <a
-              href="/corporate-lawyers-in-lucknow/"
-              class="text-stone-300 hover:text-brass-light"
-            >
+            <a href="/corporate-lawyers-in-lucknow/" class="text-zinc-300 hover:text-orange-400">
               Corporate Lawyers in Lucknow (UP Guide)
             </a>
           </li>
           <li>
-            <a href="/hi/" hreflang="hi-IN" class="text-stone-300 hover:text-brass-light">
+            <a href="/hi/" hreflang="hi-IN" class="text-zinc-300 hover:text-orange-400">
               हिंदी संस्करण (Hindi Overview)
             </a>
           </li>
           <li>
-            <a href="/contact/" class="text-stone-300 hover:text-brass-light">
+            <a href="/contact/" class="text-zinc-300 hover:text-orange-400">
               Schedule a Consultation
             </a>
           </li>
           <li>
-            <a href="/rss.xml" class="text-stone-300 hover:text-brass-light">
-              Insights RSS Feed
-            </a>
+            <a href="/rss.xml" class="text-zinc-300 hover:text-orange-400"> Insights RSS Feed </a>
           </li>
         </ul>
 
-        <div class="mt-6 rounded border border-stone-700/80 bg-ink-elevated p-3.5 text-xs text-stone-300">
-          <p class="font-semibold text-brass-light">Primary Forums in Uttar Pradesh</p>
+        <div
+          class="mt-6 rounded border border-orange-500/30 bg-zinc-900 p-3.5 text-xs text-zinc-300"
+        >
+          <p class="font-semibold text-amber-400">Primary Forums in Uttar Pradesh</p>
           <p class="mt-1 leading-relaxed">
             High Court at Allahabad (Lucknow Bench) • Commercial Courts • NCLT Allahabad • DRT
             Lucknow • UP-RERA • Consumer Commissions
@@ -123,21 +135,25 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bar Council of India Rule 36 Mandatory Footer Disclaimer -->
-    <div class="mt-10 border-t border-stone-800 pt-6 text-xs leading-relaxed text-stone-400">
+    <div class="mt-10 border-t border-zinc-800 pt-6 text-xs leading-relaxed text-zinc-400">
       <p>
-        <strong class="text-stone-200">Regulatory Disclaimer (Bar Council of India Rule 36):</strong>{' '}
+        <strong class="text-amber-400">Regulatory Disclaimer (Bar Council of India Rule 36):</strong
+        >{' '}
         {SITE_CONFIG.bciDisclaimerFull} All content on this website is informational only and does not
         constitute legal advice.
       </p>
       <div
-        class="mt-4 flex flex-col justify-between gap-4 border-t border-stone-800/80 pt-4 sm:flex-row sm:items-center"
+        class="mt-4 flex flex-col justify-between gap-4 border-t border-zinc-800/80 pt-4 sm:flex-row sm:items-center"
       >
-        <p>© {currentYear} {SITE_CONFIG.name}. All rights reserved. Lucknow, Uttar Pradesh, India.</p>
+        <p>
+          © {currentYear}
+          {SITE_CONFIG.name}. All rights reserved. Lucknow, Uttar Pradesh, India.
+        </p>
         <nav aria-label="Legal and Policy Links" class="flex flex-wrap gap-5">
-          <a href="/disclaimer/" class="hover:text-brass-light">BCI Disclaimer</a>
-          <a href="/privacy-policy/" class="hover:text-brass-light">Privacy Policy (DPDP Act)</a>
-          <a href="/terms/" class="hover:text-brass-light">Terms of Use</a>
-          <a href="/llms.txt" class="hover:text-brass-light">llms.txt</a>
+          <a href="/disclaimer/" class="hover:text-amber-400">BCI Disclaimer</a>
+          <a href="/privacy-policy/" class="hover:text-amber-400">Privacy Policy (DPDP Act)</a>
+          <a href="/terms/" class="hover:text-amber-400">Terms of Use</a>
+          <a href="/llms.txt" class="hover:text-amber-400">llms.txt</a>
         </nav>
       </div>
     </div>

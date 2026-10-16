@@ -3,14 +3,14 @@ import { SITE_CONFIG } from '../data/siteConfig';
 ---
 
 <div
-  class="fixed right-0 bottom-0 left-0 z-30 border-t border-border-strong bg-ink px-3 py-2.5 text-white shadow-lg lg:hidden"
+  class="fixed right-0 bottom-0 left-0 z-30 border-t border-orange-500/50 bg-ink px-3 py-2.5 text-white shadow-lg lg:hidden"
   role="region"
   aria-label="Quick Contact Actions"
 >
-  <div class="mx-auto grid max-w-md grid-cols-3 gap-2 text-center text-xs font-semibold">
+  <div class="mx-auto grid max-w-md grid-cols-3 gap-2 text-center text-xs font-bold">
     <a
       href={`tel:${SITE_CONFIG.nap.phoneE164}`}
-      class="flex items-center justify-center gap-1.5 rounded border border-stone-600 bg-ink-elevated py-2 text-stone-100 hover:border-brass-light"
+      class="flex items-center justify-center gap-1.5 rounded border border-zinc-700 bg-zinc-900 py-2 text-zinc-100 hover:border-amber-400"
     >
       <span aria-hidden="true">📞</span>
       <span>Call Desk</span>
@@ -19,14 +19,14 @@ import { SITE_CONFIG } from '../data/siteConfig';
       href={`https://wa.me/${SITE_CONFIG.nap.whatsappNumber}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="flex items-center justify-center gap-1.5 rounded border border-stone-600 bg-ink-elevated py-2 text-stone-100 hover:border-brass-light"
+      class="flex items-center justify-center gap-1.5 rounded border border-zinc-700 bg-zinc-900 py-2 text-zinc-100 hover:border-amber-400"
     >
       <span aria-hidden="true">💬</span>
       <span>WhatsApp</span>
     </a>
     <a
       href="/contact/#consultation-form"
-      class="flex items-center justify-center rounded bg-brass-light py-2 text-ink hover:bg-white"
+      class="flex items-center justify-center rounded bg-gradient-to-r from-orange-600 to-amber-500 py-2 text-white hover:from-amber-400 hover:to-yellow-300 hover:text-black"
     >
       <span>Consult</span>
     </a>

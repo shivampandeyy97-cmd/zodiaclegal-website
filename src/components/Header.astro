@@ -6,30 +6,33 @@ const isHindi = currentPath.startsWith('/hi');
 ---
 
 <header
-  class="sticky top-0 z-40 border-b border-border-subtle bg-paper/95 backdrop-blur-md transition-colors"
+  class="sticky top-0 z-40 border-b border-border-subtle bg-paper/95 backdrop-blur-md transition-colors shadow-sm"
 >
+  <!-- Signature Orange-Amber-Yellow Luminous Accent Bar -->
+  <div class="brand-gradient-bar h-1 w-full" aria-hidden="true"></div>
+
   <!-- Top Statutory Information Bar -->
-  <div class="bg-ink text-xs text-content-inverse">
+  <div class="bg-ink text-xs text-white border-b border-zinc-800">
     <div
       class="mx-auto flex max-w-container flex-wrap items-center justify-between gap-2 px-4 py-1.5 sm:px-6 lg:px-8"
     >
-      <p class="font-medium tracking-wide text-stone-300">
-        <span>Vikas Nagar, Lucknow, Uttar Pradesh</span>
-        <span class="mx-2 text-brass-light" aria-hidden="true">•</span>
+      <p class="font-medium tracking-wide text-zinc-300">
+        <span class="font-semibold text-amber-400">Vikas Nagar, Lucknow, UP</span>
+        <span class="mx-2 text-orange-500" aria-hidden="true">•</span>
         <span class="hidden sm:inline">{SITE_CONFIG.bciDisclaimerShort}</span>
       </p>
       <div class="flex items-center gap-4">
         <a
           href={`tel:${SITE_CONFIG.nap.phoneE164}`}
-          class="font-medium text-stone-200 hover:text-brass-light"
+          class="font-semibold text-amber-300 hover:text-orange-400"
         >
           {SITE_CONFIG.nap.phoneDisplay}
         </a>
-        <span class="text-stone-600" aria-hidden="true">|</span>
+        <span class="text-zinc-700" aria-hidden="true">|</span>
         <a
           href={isHindi ? '/' : '/hi/'}
           hreflang={isHindi ? 'en-IN' : 'hi-IN'}
-          class="font-medium text-brass-light hover:underline"
+          class="font-semibold text-orange-400 hover:text-amber-300 hover:underline"
           aria-label={isHindi ? 'Switch to English' : 'हिंदी में पढ़ें'}
         >
           {isHindi ? 'English' : 'हिंदी (HI)'}
@@ -37,7 +40,7 @@ const isHindi = currentPath.startsWith('/hi');
         <button
           type="button"
           id="theme-toggle"
-          class="rounded px-1.5 py-0.5 text-stone-300 hover:bg-ink-elevated hover:text-white"
+          class="rounded border border-zinc-700 bg-zinc-900 px-2 py-0.5 text-zinc-200 hover:border-amber-400 hover:text-amber-300"
           aria-label="Toggle color theme"
         >
           <span id="theme-toggle-label">Theme</span>
@@ -48,24 +51,20 @@ const isHindi = currentPath.startsWith('/hi');
 
   <!-- Main Navigation Bar -->
   <div
-    class="mx-auto flex max-w-container items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8"
+    class="mx-auto flex max-w-container items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
   >
-    <a href="/" class="flex items-center gap-3 focus:outline-none" aria-label="Zodiac Legal Home">
+    <a
+      href="/"
+      class="flex items-center gap-3 rounded bg-white px-2.5 py-1 shadow-sm ring-1 ring-zinc-200/80 focus:outline-none dark:ring-amber-500/40"
+      aria-label="Zodiac Legal Home"
+    >
       <img
-        src="/brand/logo.svg"
+        src="/brand/logo.png"
         alt="Zodiac Legal — Advocates & Corporate Counsel"
-        width="235"
-        height="40"
+        width="179"
+        height="90"
         fetchpriority="high"
-        class="h-10 w-auto dark:hidden"
-      />
-      <img
-        src="/brand/logo-light.svg"
-        alt="Zodiac Legal — Advocates & Corporate Counsel"
-        width="235"
-        height="40"
-        fetchpriority="low"
-        class="hidden h-10 w-auto dark:block"
+        class="h-11 w-auto sm:h-12"
       />
     </a>
 
@@ -75,10 +74,10 @@ const isHindi = currentPath.startsWith('/hi');
         href="/about/"
         class:list={[
           'text-sm font-medium transition-colors hover:text-brass',
-          currentPath.startsWith('/about') ? 'text-brass font-semibold' : 'text-content-primary',
+          currentPath.startsWith('/about') ? 'text-brass font-bold' : 'text-content-primary',
         ]}
       >
-        About the Firm
+        About
       </a>
 
       <!-- Accessible Practice Areas Mega-Menu Disclosure -->
@@ -89,9 +88,9 @@ const isHindi = currentPath.startsWith('/hi');
           aria-expanded="false"
           aria-controls="mega-menu-panel"
           class:list={[
-            ' inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-brass',
+            'inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-brass',
             currentPath.startsWith('/practice-areas')
-              ? 'text-brass font-semibold'
+              ? 'text-brass font-bold'
               : 'text-content-primary',
           ]}
         >
@@ -113,8 +112,9 @@ const isHindi = currentPath.startsWith('/hi');
         <div
           id="mega-menu-panel"
           hidden
-          class="absolute right-0 left-auto mt-4 w-[44rem] -translate-x-1/4 rounded border border-border-strong bg-paper-card p-6 shadow-2xl"
+          class="absolute right-0 left-auto mt-4 w-[44rem] -translate-x-1/4 overflow-hidden rounded-md border border-border-strong bg-paper-card p-6 shadow-2xl"
         >
+          <div class="brand-gradient-bar absolute inset-x-0 top-0 h-1" aria-hidden="true"></div>
           <div class="mb-4 flex items-center justify-between border-b border-border-subtle pb-3">
             <div>
               <p class="font-serif text-base font-semibold text-content-primary">
@@ -124,10 +124,7 @@ const isHindi = currentPath.startsWith('/hi');
                 Structured legal representation across Lucknow &amp; Uttar Pradesh
               </p>
             </div>
-            <a
-              href="/practice-areas/"
-              class="text-xs font-semibold text-brass hover:underline"
-            >
+            <a href="/practice-areas/" class="text-xs font-bold text-brass hover:underline">
               View All 9 Practice Areas →
             </a>
           </div>
@@ -136,14 +133,12 @@ const isHindi = currentPath.startsWith('/hi');
               PRACTICE_AREAS_NAV.map((area) => (
                 <a
                   href={`/practice-areas/${area.slug}/`}
-                  class="group rounded border border-transparent p-2.5 transition-colors hover:border-border-subtle hover:bg-paper-warm"
+                  class="group rounded border border-transparent p-2.5 transition-colors hover:border-orange-500/40 hover:bg-paper-warm"
                 >
                   <p class="font-serif text-sm font-semibold text-content-primary group-hover:text-brass">
                     {area.title}
                   </p>
-                  <p class="mt-0.5 text-xs leading-snug text-content-secondary">
-                    {area.shortDesc}
-                  </p>
+                  <p class="mt-0.5 text-xs leading-snug text-content-secondary">{area.shortDesc}</p>
                 </a>
               ))
             }
@@ -155,17 +150,17 @@ const isHindi = currentPath.startsWith('/hi');
         href="/team/"
         class:list={[
           'text-sm font-medium transition-colors hover:text-brass',
-          currentPath.startsWith('/team') ? 'text-brass font-semibold' : 'text-content-primary',
+          currentPath.startsWith('/team') ? 'text-brass font-bold' : 'text-content-primary',
         ]}
       >
-        Counsel &amp; Desks
+        Our Team
       </a>
 
       <a
         href="/insights/"
         class:list={[
           'text-sm font-medium transition-colors hover:text-brass',
-          currentPath.startsWith('/insights') ? 'text-brass font-semibold' : 'text-content-primary',
+          currentPath.startsWith('/insights') ? 'text-brass font-bold' : 'text-content-primary',
         ]}
       >
         Insights
@@ -175,7 +170,7 @@ const isHindi = currentPath.startsWith('/hi');
         href="/faq/"
         class:list={[
           'text-sm font-medium transition-colors hover:text-brass',
-          currentPath.startsWith('/faq') ? 'text-brass font-semibold' : 'text-content-primary',
+          currentPath.startsWith('/faq') ? 'text-brass font-bold' : 'text-content-primary',
         ]}
       >
         FAQ
@@ -185,7 +180,7 @@ const isHindi = currentPath.startsWith('/hi');
         href="/contact/"
         class:list={[
           'text-sm font-medium transition-colors hover:text-brass',
-          currentPath.startsWith('/contact') ? 'text-brass font-semibold' : 'text-content-primary',
+          currentPath.startsWith('/contact') ? 'text-brass font-bold' : 'text-content-primary',
         ]}
       >
         Contact
@@ -195,7 +190,7 @@ const isHindi = currentPath.startsWith('/hi');
     <div class="flex items-center gap-3">
       <a
         href="/contact/#consultation-form"
-        class="btn-primary hidden rounded-sm bg-ink px-4 py-2.5 text-xs font-semibold tracking-wider text-content-inverse uppercase transition-colors hover:bg-ink-elevated sm:inline-flex dark:bg-brass dark:text-ink dark:hover:bg-brass-light"
+        class="btn-primary hidden rounded-sm bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 px-5 py-2.5 text-xs font-bold tracking-wider text-white uppercase shadow-md transition-all hover:from-amber-500 hover:to-yellow-400 hover:text-black sm:inline-flex"
       >
         Book a Consultation
       </a>
@@ -209,7 +204,13 @@ const isHindi = currentPath.startsWith('/hi');
         class="inline-flex items-center justify-center rounded border border-border-strong p-2 text-content-primary lg:hidden"
         aria-label="Open main navigation menu"
       >
-        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -228,13 +229,19 @@ const isHindi = currentPath.startsWith('/hi');
     class="border-t border-border-subtle bg-paper px-4 pt-3 pb-6 lg:hidden"
   >
     <div class="flex flex-col space-y-2">
-      <a href="/about/" class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm">
+      <a
+        href="/about/"
+        class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm"
+      >
         About the Firm
       </a>
-      <a href="/practice-areas/" class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm">
+      <a
+        href="/practice-areas/"
+        class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm"
+      >
         All Practice Areas
       </a>
-      <div class="border-s-2 border-brass ps-3 space-y-1.5 py-1">
+      <div class="border-s-2 border-orange-500 ps-3 space-y-1.5 py-1">
         {
           PRACTICE_AREAS_NAV.map((area) => (
             <a
@@ -246,22 +253,34 @@ const isHindi = currentPath.startsWith('/hi');
           ))
         }
       </div>
-      <a href="/team/" class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm">
-        Counsel &amp; Desks
+      <a
+        href="/team/"
+        class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm"
+      >
+        Our Team (Shalini Pandey, Sakshi Pandey, Shiv Kumar Pandey)
       </a>
-      <a href="/insights/" class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm">
+      <a
+        href="/insights/"
+        class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm"
+      >
         Legal Insights (10 Guides)
       </a>
-      <a href="/faq/" class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm">
+      <a
+        href="/faq/"
+        class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm"
+      >
         FAQs
       </a>
-      <a href="/contact/" class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm">
+      <a
+        href="/contact/"
+        class="rounded px-2 py-2 text-base font-medium text-content-primary hover:bg-paper-warm"
+      >
         Contact &amp; Location
       </a>
       <div class="pt-2">
         <a
           href="/contact/#consultation-form"
-          class="block w-full rounded-sm bg-ink py-3 text-center text-xs font-semibold tracking-wider text-content-inverse uppercase dark:bg-brass dark:text-ink"
+          class="block w-full rounded-sm bg-gradient-to-r from-orange-600 to-amber-500 py-3 text-center text-xs font-bold tracking-wider text-white uppercase"
         >
           Book a Consultation
         </a>

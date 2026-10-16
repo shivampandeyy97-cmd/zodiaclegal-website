@@ -10,9 +10,12 @@ import { SITE_CONFIG } from '../data/siteConfig';
   canonicalPath="/privacy-policy/"
   lastReviewed="2026-10-16"
 >
-  <section class="bg-ink py-12 text-content-inverse border-b border-stone-800">
+  <section class="hero-obsidian-glow py-12 text-white border-b border-zinc-800">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-      <Breadcrumbs items={[{ label: 'Privacy Policy', href: '/privacy-policy/' }]} invertText={true} />
+      <Breadcrumbs
+        items={[{ label: 'Privacy Policy', href: '/privacy-policy/' }]}
+        invertText={true}
+      />
       <h1 class="mt-2 font-serif text-3xl font-semibold text-white">
         Privacy Policy &amp; Data Protection Notice
       </h1>
@@ -29,10 +32,10 @@ import { SITE_CONFIG } from '../data/siteConfig';
         <h2>1. Scope and Data Fiduciary Identity</h2>
         <p>
           <strong>{SITE_CONFIG.name}</strong>, located at {SITE_CONFIG.nap.streetAddress},{' '}
-          {SITE_CONFIG.nap.locality}, {SITE_CONFIG.nap.region} – {SITE_CONFIG.nap.postalCode}, India,
-          respects the privacy of visitors to <code>zodiaclegal.com</code> and processes personal data
-          in accordance with the Information Technology Act, 2000 and the Digital Personal Data
-          Protection Act, 2023 (“DPDP Act”).
+          {SITE_CONFIG.nap.locality}, {SITE_CONFIG.nap.region} – {SITE_CONFIG.nap.postalCode},
+          India, respects the privacy of visitors to <code>zodiaclegal.com</code> and processes personal
+          data in accordance with the Information Technology Act, 2000 and the Digital Personal Data Protection
+          Act, 2023 (“DPDP Act”).
         </p>
 
         <h2>2. Categories of Personal Data Collected</h2>
@@ -58,8 +61,8 @@ import { SITE_CONFIG } from '../data/siteConfig';
           <li>Complying with applicable statutory or Bar Council of India obligations.</li>
         </ul>
         <p>
-          We never sell, rent, or trade visitor or client personal data to third-party advertisers or
-          data brokers.
+          We never sell, rent, or trade visitor or client personal data to third-party advertisers
+          or data brokers.
         </p>
 
         <h2>4. Rights of Data Principals under the DPDP Act, 2023</h2>
@@ -73,9 +76,8 @@ import { SITE_CONFIG } from '../data/siteConfig';
         <h2>5. Analytics &amp; Cookies</h2>
         <p>
           This website stores a local preference key (<code>zodiaclegal_bci_acknowledged_v1</code>)
-          in your browser’s <code>localStorage</code> to remember your acknowledgement of the Bar
-          Council of India disclaimer. Optional analytics, when configured, load only after user
-          acknowledgement.
+          in your browser’s <code>localStorage</code> to remember your acknowledgement of the Bar Council
+          of India disclaimer. Optional analytics, when configured, load only after user acknowledgement.
         </p>
 
         <p class="text-xs text-content-muted">

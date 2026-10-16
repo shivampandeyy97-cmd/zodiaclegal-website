@@ -46,7 +46,7 @@ const articleSchema = buildArticleSchema({
   extraSchema={articleSchema}
 >
   <!-- Article Header -->
-  <section class="bg-ink py-14 text-content-inverse border-b border-stone-800">
+  <section class="hero-obsidian-glow py-14 text-white border-b border-zinc-800">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <Breadcrumbs
         items={[
@@ -55,7 +55,9 @@ const articleSchema = buildArticleSchema({
         ]}
         invertText={true}
       />
-      <div class="flex flex-wrap items-center gap-3 text-xs text-brass-light uppercase tracking-wider font-semibold">
+      <div
+        class="flex flex-wrap items-center gap-3 text-xs text-amber-400 uppercase tracking-wider font-semibold"
+      >
         <span>{entry.data.category}</span>
         <span aria-hidden="true">•</span>
         <span>{entry.data.readingTime}</span>
@@ -95,7 +97,9 @@ const articleSchema = buildArticleSchema({
               {
                 entry.data.keyTakeaways.map((point) => (
                   <li class="flex items-start gap-2.5">
-                    <span class="font-bold text-brass" aria-hidden="true">✓</span>
+                    <span class="font-bold text-brass" aria-hidden="true">
+                      ✓
+                    </span>
                     <span>{point}</span>
                   </li>
                 ))
@@ -121,12 +125,16 @@ const articleSchema = buildArticleSchema({
           </div>
 
           <!-- Mandatory Legal Compliance Footnote -->
-          <div class="mt-10 rounded border border-border-subtle bg-paper-warm p-4 text-xs leading-relaxed text-content-muted">
+          <div
+            class="mt-10 rounded border border-border-subtle bg-paper-warm p-4 text-xs leading-relaxed text-content-muted"
+          >
             <p>
-              <strong>Editorial &amp; Statutory Notice:</strong> Published on {entry.data.publishDate}
+              <strong>Editorial &amp; Statutory Notice:</strong> Published on {
+                entry.data.publishDate
+              }
               and last reviewed on {entry.data.lastReviewed} by {entry.data.reviewedBy}.{' '}
-              <em>Informational only; not legal advice.</em> For advice specific to your facts,
-              consult an enrolled Advocate.
+              <em>Informational only; not legal advice.</em> For advice specific to your facts, consult
+              an enrolled Advocate.
             </p>
           </div>
         </article>

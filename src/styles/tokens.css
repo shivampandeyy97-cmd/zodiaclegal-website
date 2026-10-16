@@ -1,5 +1,7 @@
 /* ==========================================================================
-   Zodiac Legal — Design System Tokens (Quiet Authority / Corporate Gravitas)
+   Zodiac Legal — Design System Tokens
+   Palette: Obsidian Black, Crisp White, Brand Orange & Solar Yellow
+   Derived directly from the official Zodiac Legal Logo
    ========================================================================== */
 
 @font-face {
@@ -37,27 +39,31 @@
   --text-3xl: clamp(1.875rem, 1.6rem + 1.25vw, 2.625rem);
   --text-4xl: clamp(2.25rem, 1.85rem + 1.8vw, 3.5rem);
 
-  /* Brand Palette Derived from Zodiac Legal Mark (Light Mode Default) */
-  --color-ink: #0b132b;
-  --color-ink-elevated: #131f42;
-  --color-ink-muted: #1e2d56;
+  /* Core Brand Palette: Black, White, Orange & Yellow */
+  --color-ink: #0a0a0c; /* Deep Obsidian Black */
+  --color-ink-elevated: #141418; /* Rich Carbon Charcoal */
+  --color-ink-muted: #222228;
 
-  --color-paper: #f8f6f0;
-  --color-paper-warm: #f1ede2;
+  --color-paper: #ffffff; /* Pure Crisp White */
+  --color-paper-warm: #fffaf3; /* Subtle Warm Amber-White Tint */
   --color-surface: #ffffff;
 
-  --color-brass: #9a7432; /* >= 4.5:1 contrast on #f8f6f0 for text/icons */
-  --color-brass-light: #c9a55c; /* High contrast accent on dark #0b132b ink */
-  --color-brass-dark: #785820;
+  /* Brand Orange & Solar Yellow Accents (WCAG 2.2 AA Contrast Safe) */
+  --color-brass: #c2410c; /* Deep Sovereign Orange >= 5.1:1 contrast on white for text/links */
+  --color-brass-light: #fb923c; /* Vibrant Orange-Amber for dark carbon surfaces */
+  --color-brass-dark: #9a3412;
+  --color-brand-orange: #ea580c; /* Exact Zodiac Logo Orange */
+  --color-brand-yellow: #facc15; /* Luminous Solar Yellow */
+  --color-brand-amber: #f59e0b; /* Warm Gold-Yellow */
 
-  --color-text-primary: #0b132b;
-  --color-text-secondary: #374151;
-  --color-text-muted: #525b6c;
-  --color-text-inverse: #f8f6f0;
+  --color-text-primary: #0a0a0c;
+  --color-text-secondary: #27272a;
+  --color-text-muted: #52525b;
+  --color-text-inverse: #ffffff;
 
   /* Borders meet 3:1 non-text contrast requirement where framing inputs/controls */
-  --color-border: #d5cfc0;
-  --color-border-strong: #6e7687;
+  --color-border: #e4e4e7;
+  --color-border-strong: #71717a;
 
   /* Semantic Status Colors */
   --color-success: #14532d;
@@ -68,28 +74,28 @@
   /* Spacing & Layout */
   --max-width-container: 75rem; /* 1200px */
   --max-width-prose: 68ch;
-  --radius-sm: 0.125rem;
-  --radius-md: 0.25rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
 }
 
-/* Dark Theme Tokens (Respects user preference or explicit toggle) */
+/* Dark Theme Tokens (Obsidian Black, Vibrant Orange & Solar Yellow) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --color-paper: #080e20;
-    --color-paper-warm: #0d1630;
-    --color-surface: #121d3d;
+    --color-paper: #0a0a0c;
+    --color-paper-warm: #121216;
+    --color-surface: #16161c;
 
-    --color-brass: #d4b26a;
-    --color-brass-light: #e2c688;
-    --color-brass-dark: #b8924a;
+    --color-brass: #fb923c;
+    --color-brass-light: #facc15;
+    --color-brass-dark: #ea580c;
 
-    --color-text-primary: #f4f1ea;
-    --color-text-secondary: #cbd5e1;
-    --color-text-muted: #94a3b8;
-    --color-text-inverse: #0b132b;
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #d4d4d8;
+    --color-text-muted: #a1a1aa;
+    --color-text-inverse: #0a0a0c;
 
-    --color-border: #23325b;
-    --color-border-strong: #7e8ea8;
+    --color-border: #27272a;
+    --color-border-strong: #a1a1aa;
 
     --color-success: #bbf7d0;
     --color-success-bg: #14532d;
@@ -99,21 +105,21 @@
 }
 
 :root[data-theme='dark'] {
-  --color-paper: #080e20;
-  --color-paper-warm: #0d1630;
-  --color-surface: #121d3d;
+  --color-paper: #0a0a0c;
+  --color-paper-warm: #121216;
+  --color-surface: #16161c;
 
-  --color-brass: #d4b26a;
-  --color-brass-light: #e2c688;
-  --color-brass-dark: #b8924a;
+  --color-brass: #fb923c;
+  --color-brass-light: #facc15;
+  --color-brass-dark: #ea580c;
 
-  --color-text-primary: #f4f1ea;
-  --color-text-secondary: #cbd5e1;
-  --color-text-muted: #94a3b8;
-  --color-text-inverse: #0b132b;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #d4d4d8;
+  --color-text-muted: #a1a1aa;
+  --color-text-inverse: #0a0a0c;
 
-  --color-border: #23325b;
-  --color-border-strong: #7e8ea8;
+  --color-border: #27272a;
+  --color-border-strong: #a1a1aa;
 
   --color-success: #bbf7d0;
   --color-success-bg: #14532d;

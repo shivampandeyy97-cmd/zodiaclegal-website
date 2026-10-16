@@ -16,10 +16,10 @@ const categories = Array.from(new Set(insights.map((item) => item.data.category)
   canonicalPath="/insights/"
   lastReviewed="2026-10-16"
 >
-  <section class="bg-ink py-14 text-content-inverse border-b border-stone-800">
+  <section class="hero-obsidian-glow py-14 text-white border-b border-zinc-800">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <Breadcrumbs items={[{ label: 'Legal Insights', href: '/insights/' }]} invertText={true} />
-      <p class="text-xs font-semibold tracking-widest text-brass-light uppercase">
+      <p class="text-xs font-semibold tracking-widest text-amber-400 uppercase">
         Statutory Knowledge Hub
       </p>
       <h1 class="mt-2 font-serif text-3xl font-semibold text-white sm:text-4xl">
@@ -35,7 +35,11 @@ const categories = Array.from(new Set(insights.map((item) => item.data.category)
   <section class="py-16">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <!-- Category Filter Pills -->
-      <div class="mb-10 flex flex-wrap items-center gap-2" role="region" aria-label="Filter insights by category">
+      <div
+        class="mb-10 flex flex-wrap items-center gap-2"
+        role="region"
+        aria-label="Filter insights by category"
+      >
         <span class="me-2 text-xs font-semibold tracking-wider text-content-muted uppercase">
           Topics:
         </span>

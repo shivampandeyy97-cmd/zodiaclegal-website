@@ -10,11 +10,31 @@ export function buildOrganizationAndLegalServiceSchema() {
       alternateName: 'Zodiac Legal Lucknow',
       description: SITE_CONFIG.descriptions.standard150,
       url: `${SITE_CONFIG.url}/`,
-      logo: `${SITE_CONFIG.url}/brand/logo.svg`,
-      image: `${SITE_CONFIG.url}/brand/logo.svg`,
+      logo: `${SITE_CONFIG.url}/brand/logo.png`,
+      image: `${SITE_CONFIG.url}/brand/logo.png`,
       telephone: SITE_CONFIG.nap.phoneE164,
       email: SITE_CONFIG.nap.email,
       priceRange: '$$',
+      member: [
+        {
+          '@type': 'Person',
+          name: 'Shalini Pandey',
+          jobTitle: 'Head',
+          image: `${SITE_CONFIG.url}/images/team/shalini-pandey.png`,
+        },
+        {
+          '@type': 'Person',
+          name: 'Sakshi Pandey',
+          jobTitle: 'Legal Assistant',
+          image: `${SITE_CONFIG.url}/images/team/sakshi-pandey.png`,
+        },
+        {
+          '@type': 'Person',
+          name: 'Shiv Kumar Pandey',
+          jobTitle: 'Principal Advisor',
+          image: `${SITE_CONFIG.url}/images/team/shiv-kumar-pandey.png`,
+        },
+      ],
       address: {
         '@type': 'PostalAddress',
         streetAddress: SITE_CONFIG.nap.streetAddress,
@@ -104,11 +124,7 @@ export function buildFaqSchema(faqs: ReadonlyArray<{ question: string; answer: s
   };
 }
 
-export function buildServiceSchema(params: {
-  name: string;
-  description: string;
-  url: string;
-}) {
+export function buildServiceSchema(params: { name: string; description: string; url: string }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',

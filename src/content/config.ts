@@ -63,6 +63,7 @@ const team = defineCollection({
     role: z.string(),
     desk: z.string(),
     order: z.number(),
+    image: z.string(),
     qualifications: z.array(z.string()),
     barEnrolmentNote: z.string(),
     practiceFocus: z.array(z.string()),
