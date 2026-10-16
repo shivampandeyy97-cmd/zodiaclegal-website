@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" fill="none">
+  <rect width="800" height="600" fill="#0B132B"/>
+  <g stroke="#C9A55C" stroke-opacity="0.16" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="600"/>
+    <line x1="240" y1="0" x2="240" y2="600"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="560" y1="0" x2="560" y2="600"/>
+    <line x1="720" y1="0" x2="720" y2="600"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="240" x2="800" y2="240"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="0" y1="480" x2="800" y2="480"/>
+  </g>
+  <g stroke="#C9A55C" stroke-opacity="0.32" stroke-width="1.5">
+    <rect x="140" y="90" width="520" height="420"/>
+    <rect x="180" y="130" width="440" height="340"/>
+    <path d="M140 90L180 130M660 90L620 130M140 510L180 470M660 510L620 470"/>
+    <circle cx="400" cy="300" r="110"/>
+    <circle cx="400" cy="300" r="64" stroke-dasharray="4 4"/>
+  </g>
+  <g stroke="#F8F6F0" stroke-opacity="0.12" stroke-width="1">
+    <path d="M80 480 L400 120 L720 480"/>
+    <path d="M240 480 L400 240 L560 480"/>
+  </g>
+</svg>

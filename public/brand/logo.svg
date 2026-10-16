@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" fill="none" role="img" aria-label="Zodiac Legal">
+  <!-- Official Brand Mark Placeholder: Replace with original vector/raster file if needed without changing component imports -->
+  <rect x="2" y="4" width="40" height="40" rx="2" fill="#0B132B" stroke="#B8924A" stroke-width="1.5"/>
+  <path d="M13 15H29L15 33H31" stroke="#F8F6F0" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M22 11V37" stroke="#B8924A" stroke-width="1.2" stroke-opacity="0.75"/>
+  <text x="54" y="25" fill="#0B132B" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="600" letter-spacing="2.5">ZODIAC LEGAL</text>
+  <text x="55" y="39" fill="#525B6C" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="500" letter-spacing="3.2">ADVOCATES &amp; CORPORATE COUNSEL</text>
+</svg>
