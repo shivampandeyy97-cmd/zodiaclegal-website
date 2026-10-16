@@ -6,17 +6,20 @@ services:
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
     pullRequestPreviewsEnabled: true
+    domains:
+      - zodiaclegal.com
+      - www.zodiaclegal.com
     envVars:
       - key: NODE_VERSION
         value: "22"
       - key: PUBLIC_SITE_URL
         value: https://zodiaclegal.com
       - key: PUBLIC_API_URL
-        sync: false
+        value: https://zodiaclegal-api.onrender.com
       - key: PUBLIC_GA4_ID
-        sync: false
+        value: ""
       - key: PUBLIC_GSC_VERIFICATION
-        sync: false
+        value: ""
     headers:
       - path: /*
         name: Strict-Transport-Security
@@ -145,7 +148,7 @@ services:
   - type: web
     name: zodiaclegal-api
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm ci --omit=dev
     startCommand: node server/index.mjs
     healthCheckPath: /healthz
@@ -155,9 +158,9 @@ services:
       - key: PORT
         value: "8787"
       - key: ALLOWED_ORIGINS
-        value: https://zodiaclegal.com,https://www.zodiaclegal.com
+        value: https://zodiaclegal.com,https://www.zodiaclegal.com,https://zodiaclegal-web.onrender.com
       - key: RESEND_API_KEY
-        sync: false
+        value: ""
       - key: CONTACT_RECEIVER_EMAIL
         value: contact@zodiaclegal.com
       - key: CONTACT_SENDER_EMAIL
