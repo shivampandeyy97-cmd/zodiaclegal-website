@@ -1,0 +1,11 @@
+/* TEAM */
+Firm: Zodiac Legal
+Role: Advocates & Corporate Legal Consultancy
+Location: Vikas Nagar, Lucknow, Uttar Pradesh – 226022, India
+Contact: contact@zodiaclegal.com | +91 98390 10163
+
+/* SITE */
+Last update: 2026-10-16
+Language: English (en-IN), Hindi (hi-IN)
+Standards: HTML5, CSS3, WCAG 2.2 AA, Schema.org JSON-LD, Bar Council of India Rule 36 Compliant
+Architecture: Astro 5 Static Output + Tailwind CSS + Self-Hosted Variable Fonts + Hono API on Render
