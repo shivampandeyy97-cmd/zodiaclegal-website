@@ -8,7 +8,7 @@ This runbook documents the live GitHub repository, 1-click **Render Blueprint** 
 
 Both the `main` (production) and `develop` (staging) branches have been pushed to GitHub:
 
-- **Repository URL:** `https://github.com/shivampandeyy97-cmd/zodiaclegal-website`
+- **Repository URL:** `https://github.com/zodiaclegallucknow-prog/zodiaclegal-website`
 - **Render Blueprint File:** [`render.yaml`](../render.yaml) (pre-configured with `zodiaclegal.com` and `www.zodiaclegal.com` custom domains, HSTS/CSP headers, 31 legacy Wix `301` redirects, and the `/server` Consultation API).
 
 ---
@@ -16,8 +16,8 @@ Both the `main` (production) and `develop` (staging) branches have been pushed t
 ## Part 2: 1-Click Render Blueprint Deployment
 
 1. Open the direct Render Blueprint launcher for your repository:
-   - **1-Click Deploy URL:** `https://dashboard.render.com/blueprint/new?repo=https://github.com/shivampandeyy97-cmd/zodiaclegal-website`
-   - _(Or in [Render Dashboard](https://dashboard.render.com/), click **New +** → **Blueprint** → select `shivampandeyy97-cmd/zodiaclegal-website`)._
+   - **1-Click Deploy URL:** `https://dashboard.render.com/blueprint/new?repo=https://github.com/zodiaclegallucknow-prog/zodiaclegal-website`
+   - _(Or in [Render Dashboard](https://dashboard.render.com/), click **New +** → **Blueprint** → select `zodiaclegallucknow-prog/zodiaclegal-website`)._
 2. Give the Blueprint a name (e.g., `zodiaclegal-production`) and click **Apply**.
 3. Render will automatically provision and deploy both services defined in [`render.yaml`](../render.yaml):
    - **`zodiaclegal-web`** (Static Site — builds `./dist`, attaches custom domains `zodiaclegal.com` and `www.zodiaclegal.com`, and configures all 31 Wix `301` redirects).
