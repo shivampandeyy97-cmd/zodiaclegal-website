@@ -17,11 +17,20 @@ const isHindi = currentPath.startsWith('/hi');
       class="mx-auto flex max-w-container flex-wrap items-center justify-between gap-2 px-4 py-1.5 sm:px-6 lg:px-8"
     >
       <p class="font-medium tracking-wide text-zinc-300">
-        <span class="font-semibold text-amber-400">Vikas Nagar, Lucknow, UP</span>
-        <span class="mx-2 text-orange-500" aria-hidden="true">•</span>
-        <span class="hidden sm:inline">{SITE_CONFIG.bciDisclaimerShort}</span>
+        <span class="font-semibold text-amber-400"
+          >Pan-India Corporate &amp; Litigation Counsel</span
+        >
+        <span class="mx-2 hidden text-orange-500 sm:inline" aria-hidden="true">•</span>
+        <span class="hidden md:inline">{SITE_CONFIG.bciDisclaimerShort}</span>
       </p>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3 sm:gap-4">
+        <a
+          href={`mailto:${SITE_CONFIG.nap.email}`}
+          class="hidden font-medium text-zinc-300 hover:text-amber-300 xl:inline"
+        >
+          {SITE_CONFIG.nap.email}
+        </a>
+        <span class="hidden text-zinc-700 xl:inline" aria-hidden="true">|</span>
         <a
           href={`tel:${SITE_CONFIG.nap.phoneE164}`}
           class="font-semibold text-amber-300 hover:text-orange-400"
@@ -51,11 +60,11 @@ const isHindi = currentPath.startsWith('/hi');
 
   <!-- Main Navigation Bar -->
   <div
-    class="mx-auto flex max-w-container items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
+    class="mx-auto flex max-w-container items-center justify-between gap-3 px-4 py-2.5 sm:gap-4 sm:px-6 sm:py-3 lg:px-8"
   >
     <a
       href="/"
-      class="flex items-center gap-3 rounded bg-white px-2.5 py-1 shadow-sm ring-1 ring-zinc-200/80 focus:outline-none dark:ring-amber-500/40"
+      class="flex shrink-0 items-center gap-3 rounded bg-white px-2.5 py-1 shadow-sm ring-1 ring-zinc-200/80 focus:outline-none dark:ring-amber-500/40"
       aria-label="Zodiac Legal Home"
     >
       <img
@@ -63,8 +72,7 @@ const isHindi = currentPath.startsWith('/hi');
         alt="Zodiac Legal — Advocates & Corporate Counsel"
         width="179"
         height="90"
-        fetchpriority="high"
-        class="h-11 w-auto sm:h-12"
+        class="h-10 w-auto sm:h-12"
       />
     </a>
 
@@ -120,9 +128,7 @@ const isHindi = currentPath.startsWith('/hi');
               <p class="font-serif text-base font-semibold text-content-primary">
                 Corporate, Commercial &amp; Litigation Practice Desks
               </p>
-              <p class="text-xs text-content-muted">
-                Structured legal representation across Lucknow &amp; Uttar Pradesh
-              </p>
+              <p class="text-xs text-content-muted">Structured legal representation across India</p>
             </div>
             <a href="/practice-areas/" class="text-xs font-bold text-brass hover:underline">
               View All 9 Practice Areas →

@@ -27,7 +27,8 @@ describe('Zodiac Legal Consultation API (/server)', () => {
         email: 'vikram@example.com',
         organization: 'Awadh Infra Pvt Ltd',
         practiceArea: 'corporate-commercial',
-        message: 'We require legal assistance with a commercial lease and UP-RERA compliance in Lucknow.',
+        message:
+          'We require legal assistance with a commercial lease and RERA compliance across India.',
         bciConsent: 'accepted',
         website_url: '',
       }),
@@ -81,7 +82,7 @@ describe('Zodiac Legal Consultation API (/server)', () => {
       phone: '+91 98390 10163',
       email: 'vikram@example.com',
       practiceArea: 'contracts-agreements',
-      message: 'Requesting contract vetting for a vendor supply agreement in Lucknow.',
+      message: 'Requesting contract vetting for a vendor supply agreement across India.',
       bciConsent: 'accepted',
     });
 

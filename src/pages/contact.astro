@@ -6,8 +6,8 @@ import { SITE_CONFIG } from '../data/siteConfig';
 ---
 
 <BaseLayout
-  title="Contact Zodiac Legal | Consultation in Vikas Nagar Lucknow"
-  description="Schedule a legal consultation with Zodiac Legal in Vikas Nagar, Lucknow, Uttar Pradesh. Call +91 98390 10163 or submit a confidential inquiry online."
+  title="Contact Zodiac Legal | Pan-India Corporate Legal Consultation"
+  description="Schedule a corporate or commercial legal consultation with Zodiac Legal. Call +91 98390 10163, email zodiaclegal.lucknow@gmail.com, or submit an inquiry online."
   canonicalPath="/contact/"
   lastReviewed="2026-10-16"
 >
@@ -18,54 +18,55 @@ import { SITE_CONFIG } from '../data/siteConfig';
         invertText={true}
       />
       <p class="text-xs font-semibold tracking-widest text-amber-400 uppercase">
-        Vikas Nagar, Lucknow • Uttar Pradesh
+        Pan-India Corporate &amp; Litigation Desk
       </p>
       <h1 class="mt-2 font-serif text-3xl font-semibold text-white sm:text-4xl">
         Contact Zodiac Legal &amp; Book a Consultation
       </h1>
       <p class="mt-4 max-w-3xl text-base leading-relaxed text-stone-300">
-        Appointments are scheduled Monday through Saturday after a preliminary conflict-of-interest
+        Appointments for corporate advisory, contract structuring, RERA, and dispute resolution
+        across India are scheduled Monday through Saturday after a preliminary conflict-of-interest
         verification.
       </p>
     </div>
   </section>
 
-  <section class="py-16">
+  <section class="py-12 sm:py-16">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
         <div class="lg:col-span-7">
           <ConsultationForm />
         </div>
 
         <aside class="space-y-8 lg:col-span-5">
-          <!-- Full NAP Block -->
+          <!-- Direct Consultation Desk Block -->
           <div class="card-surface rounded border border-border-strong bg-paper-card p-6">
             <h2 class="font-serif text-xl font-semibold text-content-primary">
-              Lucknow Office &amp; Direct Desk
+              Direct Corporate &amp; Litigation Desk
             </h2>
-            <address class="mt-4 not-italic space-y-3 text-sm text-content-secondary">
+            <address class="mt-4 not-italic space-y-3.5 text-sm text-content-secondary">
               <div>
                 <p class="font-semibold text-content-primary">{SITE_CONFIG.nap.firmName}</p>
-                <p>{SITE_CONFIG.nap.streetAddress}</p>
-                <p>
-                  {SITE_CONFIG.nap.locality}, {SITE_CONFIG.nap.region} – {
-                    SITE_CONFIG.nap.postalCode
-                  },{' '}
-                  {SITE_CONFIG.nap.country}
-                </p>
+                <p>Pan-India Corporate, Commercial &amp; Regulatory Practice</p>
               </div>
               <div>
                 <p class="font-semibold text-content-primary">Telephone / WhatsApp:</p>
                 <p>
-                  <a href={`tel:${SITE_CONFIG.nap.phoneE164}`} class="text-brass underline">
+                  <a
+                    href={`tel:${SITE_CONFIG.nap.phoneE164}`}
+                    class="font-bold text-brass underline"
+                  >
                     {SITE_CONFIG.nap.phoneDisplay}
                   </a>
                 </p>
               </div>
               <div>
-                <p class="font-semibold text-content-primary">Electronic Mail:</p>
+                <p class="font-semibold text-content-primary">Official Electronic Mail:</p>
                 <p>
-                  <a href={`mailto:${SITE_CONFIG.nap.email}`} class="text-brass underline">
+                  <a
+                    href={`mailto:${SITE_CONFIG.nap.email}`}
+                    class="font-bold text-brass underline break-all"
+                  >
                     {SITE_CONFIG.nap.email}
                   </a>
                 </p>
@@ -77,31 +78,26 @@ import { SITE_CONFIG } from '../data/siteConfig';
             </address>
           </div>
 
-          <!-- Map Embed Placeholder (Privacy-safe & zero third-party CLS) -->
+          <!-- Pan-India Representation & Virtual Briefing -->
           <div class="card-surface rounded border border-border-subtle bg-paper-warm p-6">
             <h2 class="font-serif text-lg font-semibold text-content-primary">
-              Location — Vikas Nagar, Lucknow
+              Pan-India Representation &amp; Virtual Briefings
             </h2>
             <p class="mt-2 text-xs leading-relaxed text-content-secondary">
-              Situated in Vikas Nagar, Lucknow (226022), with convenient connectivity to the High
-              Court of Judicature at Allahabad (Lucknow Bench, Gomti Nagar), UP-RERA (Kalakankar
-              House Road), and Commercial Courts.
+              Zodiac Legal advises domestic and international corporations, startups, promoters, and
+              lenders across major Indian commercial corridors—including Delhi-NCR, Mumbai,
+              Bengaluru, Hyderabad, Chennai, Pune, Kolkata, and Ahmedabad—via structured virtual
+              briefings and chamber consultations.
             </p>
-            <div class="mt-4 rounded border border-border-strong bg-paper p-5 text-center">
+            <div class="mt-4 rounded border border-border-strong bg-paper p-5">
               <p class="font-serif text-sm font-semibold text-content-primary">
-                Vikas Nagar, Lucknow, Uttar Pradesh (26.8986° N, 80.9639° E)
+                Forums &amp; Authorities Covered Nationwide
               </p>
-              <p class="mt-1 text-xs text-content-muted">
-                Exact chamber directions are shared upon appointment confirmation.
+              <p class="mt-1.5 text-xs leading-relaxed text-content-secondary">
+                Supreme Court &amp; High Courts • Commercial Courts • NCLT &amp; NCLAT • DRT &amp;
+                DRAT • State RERA Authorities • Arbitral Tribunals • MCA / ROC &amp; Consumer
+                Commissions.
               </p>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Vikas+Nagar+Lucknow+Uttar+Pradesh+226022"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-3 inline-block rounded bg-ink px-4 py-2 text-xs font-semibold text-white hover:bg-ink-elevated dark:bg-brass dark:text-ink"
-              >
-                Open Vikas Nagar in Google Maps ↗
-              </a>
             </div>
           </div>
 
@@ -115,7 +111,7 @@ import { SITE_CONFIG } from '../data/siteConfig';
               <li>
                 • Keep copies of executed agreements, purchase orders, or property deeds ready.
               </li>
-              <li>• Bring any statutory notice, bank return memo, or tribunal order received.</li>
+              <li>• Include any statutory notice, bank return memo, or tribunal order received.</li>
               <li>
                 • Do not transmit sensitive privileged files until our conflict check is confirmed.
               </li>

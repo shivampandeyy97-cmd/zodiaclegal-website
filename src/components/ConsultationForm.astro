@@ -7,30 +7,33 @@ interface Props {
 }
 
 const { defaultPracticeArea = '', compact = false } = Astro.props;
-const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
+const apiUrl = import.meta.env.PUBLIC_API_URL || 'https://zodiaclegal-api.onrender.com';
 ---
 
 <div
   id="consultation-form"
-  class="card-surface relative overflow-hidden rounded-md border border-border-strong bg-paper-card p-6 shadow-md sm:p-8"
+  class="card-surface relative overflow-hidden rounded-md border border-border-strong bg-paper-card p-5 shadow-md sm:p-8"
 >
   <div class="brand-gradient-bar absolute inset-x-0 top-0 h-1.5" aria-hidden="true"></div>
   <div class="border-b border-border-subtle pb-4">
     <p class="text-xs font-bold tracking-widest text-brass uppercase">
-      Confidential Consultation Request
+      Confidential Consultation Request • Pan-India Desk
     </p>
-    <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary">
+    <h2 class="mt-1 font-serif text-xl font-semibold text-content-primary sm:text-2xl">
       Schedule a Legal Consultation
     </h2>
     <p class="mt-1.5 text-sm text-content-secondary">
-      Provide brief background details so our Lucknow desk can perform a preliminary conflict check
-      and coordinate an appointment.
+      Provide brief background details so our corporate &amp; litigation desk (<span
+        class="font-medium text-content-primary">{SITE_CONFIG.nap.email}</span
+      >) can perform a preliminary conflict check and coordinate an appointment.
     </p>
   </div>
 
   <form
     id="zl-consult-form"
     action={`${apiUrl}/api/consult`}
+    data-recipient={SITE_CONFIG.nap.email}
+    data-whatsapp={SITE_CONFIG.nap.whatsappNumber}
     method="POST"
     class="mt-6 space-y-5"
     novalidate
@@ -64,7 +67,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           maxlength="120"
           autocomplete="name"
           placeholder="e.g., Rajeshwar Prasad"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-base text-content-primary focus:border-orange-500 focus:outline-none sm:text-sm [&:user-invalid]:border-red-600 [&:user-valid]:border-emerald-600"
         />
       </div>
 
@@ -83,7 +86,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           pattern="^[0-9+\\-\\s()]{8,20}$"
           autocomplete="tel"
           placeholder="+91 98XXX XXXXX"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-base text-content-primary focus:border-orange-500 focus:outline-none sm:text-sm [&:user-invalid]:border-red-600 [&:user-valid]:border-emerald-600"
         />
       </div>
     </div>
@@ -103,7 +106,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           required
           autocomplete="email"
           placeholder="name@company.com"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-base text-content-primary focus:border-orange-500 focus:outline-none sm:text-sm [&:user-invalid]:border-red-600 [&:user-valid]:border-emerald-600"
         />
       </div>
 
@@ -121,7 +124,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           maxlength="140"
           autocomplete="organization"
           placeholder="Entity name or individual matter"
-          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-base text-content-primary focus:border-orange-500 focus:outline-none sm:text-sm"
         />
       </div>
     </div>
@@ -137,7 +140,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
         id="zl-practice-area"
         name="practiceArea"
         required
-        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
+        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-base text-content-primary focus:border-orange-500 focus:outline-none sm:text-sm [&:user-invalid]:border-red-600 [&:user-valid]:border-emerald-600"
       >
         <option value="" disabled selected={!defaultPracticeArea}>
           Select a practice area...
@@ -170,8 +173,8 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
         required
         minlength="20"
         maxlength="2500"
-        placeholder="State the nature of the transaction, contract, or dispute, the relevant forum/city in Uttar Pradesh, and any statutory deadline..."
-        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-orange-500 focus:outline-none"
+        placeholder="State the nature of the transaction, contract, or dispute, the relevant judicial or regulatory forum in India, and any statutory deadline..."
+        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-base text-content-primary focus:border-orange-500 focus:outline-none sm:text-sm [&:user-invalid]:border-red-600 [&:user-valid]:border-emerald-600"
       ></textarea>
     </div>
 
@@ -191,7 +194,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
       </label>
     </div>
 
-    <!-- Accessible Status Banner (Uses Icon + Text per modern-web-guidance `color`) -->
+    <!-- Accessible Status Banner -->
     <div
       id="zl-form-status"
       role="status"
@@ -201,23 +204,43 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
     >
       <div class="flex items-start gap-2.5">
         <span id="zl-form-status-icon" aria-hidden="true" class="font-bold"></span>
-        <p id="zl-form-status-text" class="font-medium"></p>
+        <div class="space-y-2">
+          <p id="zl-form-status-text" class="font-medium"></p>
+          <div id="zl-form-actions" hidden class="flex flex-wrap gap-2.5 pt-1">
+            <a
+              id="zl-direct-email-link"
+              href={`mailto:${SITE_CONFIG.nap.email}`}
+              class="inline-flex items-center gap-1.5 rounded bg-orange-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-orange-700"
+            >
+              <span>✉ Send Copy via Email App ({SITE_CONFIG.nap.email})</span>
+            </a>
+            <a
+              id="zl-direct-wa-link"
+              href={`https://wa.me/${SITE_CONFIG.nap.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded border border-current px-3 py-1.5 text-xs font-bold hover:underline"
+            >
+              <span>Share on WhatsApp ({SITE_CONFIG.nap.phoneDisplay})</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+    <div class="flex flex-col justify-between gap-3 pt-1 sm:flex-row sm:items-center">
       <button
         type="submit"
         id="zl-submit-btn"
-        class="btn-primary rounded-sm bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 px-6 py-3 text-xs font-bold tracking-wider text-white uppercase shadow-md transition-all hover:from-amber-400 hover:to-yellow-300 hover:text-black"
+        class="btn-primary w-full rounded-sm bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 px-6 py-3 text-xs font-bold tracking-wider text-white uppercase shadow-md transition-all hover:from-amber-400 hover:to-yellow-300 hover:text-black sm:w-auto"
       >
         Submit Consultation Request
       </button>
       <p class="text-xs text-content-muted">
-        Direct Desk: <a
-          href={`tel:${SITE_CONFIG.nap.phoneE164}`}
-          class="font-bold text-brass underline">{SITE_CONFIG.nap.phoneDisplay}</a
-        >
+        Direct Desk:{' '}
+        <a href={`mailto:${SITE_CONFIG.nap.email}`} class="font-bold text-brass underline">
+          {SITE_CONFIG.nap.email}
+        </a>
       </p>
     </div>
   </form>
@@ -229,13 +252,48 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
     const statusBox = document.getElementById('zl-form-status');
     const statusIcon = document.getElementById('zl-form-status-icon');
     const statusText = document.getElementById('zl-form-status-text');
+    const statusActions = document.getElementById('zl-form-actions');
+    const directEmailLink = document.getElementById('zl-direct-email-link');
+    const directWaLink = document.getElementById('zl-direct-wa-link');
     const submitBtn = document.getElementById('zl-submit-btn');
 
     if (!form || !(form instanceof HTMLFormElement)) return;
 
-    function showStatus(type, message) {
+    const recipientEmail = form.dataset.recipient || 'zodiaclegal.lucknow@gmail.com';
+    const whatsappNumber = form.dataset.whatsapp || '919839010163';
+
+    function prepareDirectLinks(payload) {
+      const subject = `[Consultation Inquiry] ${payload.practiceArea} — ${payload.fullName}`;
+      const bodyLines = [
+        `Zodiac Legal Consultation Inquiry`,
+        `---------------------------------`,
+        `Full Name: ${payload.fullName}`,
+        `Organization: ${payload.organization || 'Not specified'}`,
+        `Phone / WhatsApp: ${payload.phone}`,
+        `Email: ${payload.email}`,
+        `Practice Area: ${payload.practiceArea}`,
+        ``,
+        `Matter Overview:`,
+        payload.message,
+      ].join('\n');
+
+      if (directEmailLink instanceof HTMLAnchorElement) {
+        directEmailLink.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines)}`;
+      }
+      if (directWaLink instanceof HTMLAnchorElement) {
+        directWaLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(bodyLines)}`;
+      }
+      if (statusActions) {
+        statusActions.hidden = false;
+      }
+    }
+
+    function showStatus(type, message, showLinks = false) {
       if (!statusBox || !statusIcon || !statusText) return;
       statusBox.hidden = false;
+      if (statusActions) {
+        statusActions.hidden = !showLinks;
+      }
       if (type === 'error') {
         statusBox.className =
           'rounded border border-red-800 bg-red-50 p-3.5 text-sm text-red-900 dark:bg-red-950/60 dark:text-red-200';
@@ -255,6 +313,7 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
       const fullName = String(data.get('fullName') || '').trim();
       const phone = String(data.get('phone') || '').trim();
       const email = String(data.get('email') || '').trim();
+      const organization = String(data.get('organization') || '').trim();
       const practiceArea = String(data.get('practiceArea') || '').trim();
       const message = String(data.get('message') || '').trim();
       const bciConsent = data.get('bciConsent');
@@ -289,9 +348,44 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
         submitBtn.textContent = 'Submitting Request...';
       }
 
+      const payload = {
+        fullName,
+        phone,
+        email,
+        organization,
+        practiceArea,
+        message,
+        bciConsent: String(bciConsent),
+        website_url: String(data.get('website_url') || ''),
+      };
+
+      prepareDirectLinks(payload);
+
+      const isLocal =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const targetEndpoint = isLocal ? 'http://localhost:8787/api/consult' : form.action;
+
       try {
-        const payload = Object.fromEntries(data.entries());
-        const response = await fetch(form.action, {
+        // Also dispatch a non-blocking client-side notification to FormSubmit for zodiaclegal.lucknow@gmail.com
+        if (!isLocal && !payload.website_url) {
+          fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipientEmail)}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              _subject: `[Zodiac Legal Inquiry] ${practiceArea} — ${fullName}`,
+              _replyto: email,
+              _template: 'table',
+              Full_Name: fullName,
+              Organization: organization || 'Not specified',
+              Phone_WhatsApp: phone,
+              Client_Email: email,
+              Practice_Area: practiceArea,
+              Matter_Overview: message,
+            }),
+          }).catch(() => {});
+        }
+
+        const response = await fetch(targetEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify(payload),
@@ -305,7 +399,8 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
         showStatus(
           'success',
           result.message ||
-            'Thank you. Your consultation inquiry has been logged by our Lucknow desk. We will respond within one business day.'
+            `Thank you. Your consultation inquiry has been logged and routed to ${recipientEmail}. Our corporate desk will respond within one business day.`,
+          true
         );
         form.reset();
       } catch (err) {
@@ -313,7 +408,8 @@ const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
           'error',
           err instanceof Error && err.message && !err.message.includes('Failed to fetch')
             ? err.message
-            : 'Our consultation server is unreachable from this network. Please call +91 98390 10163 or email contact@zodiaclegal.com directly.'
+            : `Please click the button below to dispatch your inquiry directly to ${recipientEmail} or call +91 98390 10163.`,
+          true
         );
       } finally {
         if (submitBtn instanceof HTMLButtonElement) {

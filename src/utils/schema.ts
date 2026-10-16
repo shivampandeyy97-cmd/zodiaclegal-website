@@ -7,7 +7,7 @@ export function buildOrganizationAndLegalServiceSchema() {
       '@type': ['LegalService', 'LocalBusiness', 'Organization'],
       '@id': `${SITE_CONFIG.url}/#legalservice`,
       name: SITE_CONFIG.name,
-      alternateName: 'Zodiac Legal Lucknow',
+      alternateName: 'Zodiac Legal India',
       description: SITE_CONFIG.descriptions.standard150,
       url: `${SITE_CONFIG.url}/`,
       logo: `${SITE_CONFIG.url}/brand/logo.png`,
@@ -49,14 +49,6 @@ export function buildOrganizationAndLegalServiceSchema() {
         longitude: SITE_CONFIG.nap.geo.longitude,
       },
       areaServed: [
-        {
-          '@type': 'City',
-          name: 'Lucknow',
-        },
-        {
-          '@type': 'State',
-          name: 'Uttar Pradesh',
-        },
         {
           '@type': 'Country',
           name: 'India',

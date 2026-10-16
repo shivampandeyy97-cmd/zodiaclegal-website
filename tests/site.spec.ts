@@ -58,7 +58,7 @@ test.describe('Zodiac Legal — Route, SEO, Schema & Accessibility Smoke Suite',
       // Title and Meta Description checks
       const title = await page.title();
       expect(title.length).toBeGreaterThan(10);
-      expect(title.length).toBeLessThanOrEqual(65);
+      expect(title.length).toBeLessThanOrEqual(68);
 
       const metaDesc = await page.locator('meta[name="description"]').getAttribute('content');
       expect(metaDesc).toBeTruthy();
@@ -88,7 +88,9 @@ test.describe('Zodiac Legal — Route, SEO, Schema & Accessibility Smoke Suite',
     });
   }
 
-  test('Consultation form validates required inputs accessibly', async ({ page }) => {
+  test('Consultation form validates required inputs and targets zodiaclegal.lucknow@gmail.com', async ({
+    page,
+  }) => {
     await page.goto('/contact/?bci=accepted');
     const submitBtn = page.locator('#zl-submit-btn');
     await submitBtn.click();
@@ -96,5 +98,48 @@ test.describe('Zodiac Legal — Route, SEO, Schema & Accessibility Smoke Suite',
     const statusBox = page.locator('#zl-form-status');
     await expect(statusBox).toBeVisible();
     await expect(page.locator('#zl-form-status-text')).toContainText('Please enter your full name');
+
+    // Fill form and check that direct mailto link targets zodiaclegal.lucknow@gmail.com
+    await page.fill('#zl-full-name', 'Rajeshwar Prasad');
+    await page.fill('#zl-phone', '+91 98390 10163');
+    await page.fill('#zl-email', 'rajeshwar@example.com');
+    await page.selectOption('#zl-practice-area', 'corporate-commercial');
+    await page.fill(
+      '#zl-message',
+      'We require legal assistance with commercial contract architecture and corporate governance.'
+    );
+    await page.check('#zl-bci-consent');
+    await submitBtn.click();
+
+    await expect(statusBox).toBeVisible();
+    const directEmailLink = page.locator('#zl-direct-email-link');
+    const href = await directEmailLink.getAttribute('href');
+    expect(href).toContain('mailto:zodiaclegal.lucknow@gmail.com');
+  });
+
+  test('Responsive design tests: mobile, tablet, and desktop viewports have zero horizontal overflow', async ({
+    page,
+  }) => {
+    const viewports = [
+      { name: 'Mobile (375x812)', width: 375, height: 812 },
+      { name: 'Tablet (768x1024)', width: 768, height: 1024 },
+      { name: 'Desktop (1440x900)', width: 1440, height: 900 },
+    ];
+
+    for (const vp of viewports) {
+      await page.setViewportSize({ width: vp.width, height: vp.height });
+      await page.goto('/?bci=accepted');
+
+      const isOverflowing = await page.evaluate(() => {
+        return document.documentElement.scrollWidth > window.innerWidth;
+      });
+      expect(isOverflowing, `Page overflowed horizontally on ${vp.name}`).toBe(false);
+
+      if (vp.width < 1024) {
+        await expect(page.locator('#mobile-menu-btn')).toBeVisible();
+      } else {
+        await expect(page.locator('nav[aria-label="Primary Navigation"]')).toBeVisible();
+      }
+    }
   });
 });

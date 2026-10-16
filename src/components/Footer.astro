@@ -7,7 +7,7 @@ const currentYear = new Date().getFullYear();
   <div class="brand-gradient-bar h-1 w-full" aria-hidden="true"></div>
   <div class="mx-auto max-w-container px-4 py-14 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
-      <!-- Column 1: Firm Identity & Verifiable NAP -->
+      <!-- Column 1: Firm Identity & Verifiable NAP (Address shown strictly in Footer) -->
       <div class="lg:col-span-4">
         <a
           href="/"
@@ -28,13 +28,7 @@ const currentYear = new Date().getFullYear();
         </p>
         <address class="mt-5 not-italic text-sm space-y-1.5 text-zinc-300">
           <p class="font-semibold text-white">{SITE_CONFIG.nap.firmName}</p>
-          <p>{SITE_CONFIG.nap.streetAddress}</p>
-          <p>
-            {SITE_CONFIG.nap.locality}, {SITE_CONFIG.nap.region} – {SITE_CONFIG.nap.postalCode},{
-              ' '
-            }
-            {SITE_CONFIG.nap.country}
-          </p>
+          <p>{SITE_CONFIG.nap.footerAddress}</p>
           <p class="pt-1">
             <span class="text-zinc-400">Tel: </span>
             <a
@@ -48,7 +42,7 @@ const currentYear = new Date().getFullYear();
             <span class="text-zinc-400">Email: </span>
             <a
               href={`mailto:${SITE_CONFIG.nap.email}`}
-              class="font-semibold text-amber-400 hover:underline"
+              class="font-semibold text-amber-400 hover:underline break-all"
             >
               {SITE_CONFIG.nap.email}
             </a>
@@ -78,7 +72,7 @@ const currentYear = new Date().getFullYear();
         </ul>
       </div>
 
-      <!-- Column 3: Institutional Links & Local Presence -->
+      <!-- Column 3: Institutional Links & Pan-India Forums -->
       <div class="lg:col-span-4">
         <h2 class="font-serif text-base font-semibold tracking-wide text-amber-400">
           Firm &amp; Statutory Resources
@@ -104,7 +98,7 @@ const currentYear = new Date().getFullYear();
           </li>
           <li>
             <a href="/corporate-lawyers-in-lucknow/" class="text-zinc-300 hover:text-orange-400">
-              Corporate Lawyers in Lucknow (UP Guide)
+              Pan-India Corporate Practice Guide
             </a>
           </li>
           <li>
@@ -125,10 +119,10 @@ const currentYear = new Date().getFullYear();
         <div
           class="mt-6 rounded border border-orange-500/30 bg-zinc-900 p-3.5 text-xs text-zinc-300"
         >
-          <p class="font-semibold text-amber-400">Primary Forums in Uttar Pradesh</p>
+          <p class="font-semibold text-amber-400">Pan-India Judicial &amp; Regulatory Forums</p>
           <p class="mt-1 leading-relaxed">
-            High Court at Allahabad (Lucknow Bench) • Commercial Courts • NCLT Allahabad • DRT
-            Lucknow • UP-RERA • Consumer Commissions
+            Supreme Court &amp; High Courts • Commercial Courts • NCLT Benches • DRT &amp; DRAT •
+            RERA Authorities • Arbitral Tribunals
           </p>
         </div>
       </div>
@@ -147,7 +141,7 @@ const currentYear = new Date().getFullYear();
       >
         <p>
           © {currentYear}
-          {SITE_CONFIG.name}. All rights reserved. Lucknow, Uttar Pradesh, India.
+          {SITE_CONFIG.name}. All rights reserved. Pan-India Corporate &amp; Litigation Practice.
         </p>
         <nav aria-label="Legal and Policy Links" class="flex flex-wrap gap-5">
           <a href="/disclaimer/" class="hover:text-amber-400">BCI Disclaimer</a>

@@ -5,125 +5,135 @@ import FaqAccordion from '../components/FaqAccordion.astro';
 import ConsultationForm from '../components/ConsultationForm.astro';
 import { PRACTICE_AREAS_NAV, SITE_CONFIG } from '../data/siteConfig';
 
-const localFaqs = [
+const nationalFaqs = [
   {
-    question: 'Which courts and tribunals in Lucknow handle commercial and corporate disputes?',
+    question: 'Which courts and tribunals across India handle commercial and corporate disputes?',
     answer:
-      'Commercial disputes in Lucknow are adjudicated before the Commercial Courts (for specified value disputes under the Commercial Courts Act, 2015), the High Court of Judicature at Allahabad (Lucknow Bench in Gomti Nagar) for writ, arbitration (Section 11/37), and appellate matters, DRT Lucknow for banking recovery, and UP-RERA Lucknow for real estate disputes. Insolvency matters under the IBC for Uttar Pradesh companies are heard at the NCLT Allahabad Bench.',
+      'Commercial disputes in India are adjudicated before the Commercial Courts and Commercial Divisions of High Courts (for specified value disputes under the Commercial Courts Act, 2015), State High Courts for writ, arbitration (Section 11/37), and appellate matters, Debts Recovery Tribunals (DRT) for banking recovery, and State RERA Authorities for real estate disputes. Insolvency and corporate governance matters under the IBC and Companies Act are heard at the jurisdictional benches of the National Company Law Tribunal (NCLT).',
   },
   {
-    question: 'Where are companies incorporated in Lucknow registered under the MCA?',
+    question: 'How are companies incorporated and regulated across India under the MCA?',
     answer:
-      'While name reservation and SPICe+ (INC-32) incorporation forms are processed through the MCA Central Registration Centre (CRC), the jurisdictional Registrar of Companies for entities with registered offices in Lucknow and across Uttar Pradesh is the Registrar of Companies, Uttar Pradesh (located in Kanpur).',
+      'Name reservation and SPICe+ (INC-32) incorporation forms are processed centrally through the Ministry of Corporate Affairs (MCA) Central Registration Centre (CRC), while ongoing statutory filings, charge registrations, and compliance monitoring are overseen by the respective jurisdictional Registrar of Companies (ROC).',
   },
   {
     question:
-      'Can Zodiac Legal assist out-of-state companies with litigation or property due diligence in Lucknow?',
+      'Can Zodiac Legal assist enterprises across multiple Indian states with corporate transactions, arbitration, or RERA matters?',
     answer:
-      'Yes. We regularly represent enterprises headquartered in Delhi-NCR, Mumbai, Bengaluru, and other states in commercial recovery, arbitration, UP-RERA complaints, and 30-year property title searches within Lucknow and Uttar Pradesh.',
+      'Yes. We regularly represent enterprises headquartered in Delhi-NCR, Mumbai, Bengaluru, Hyderabad, Chennai, Pune, Kolkata, and across India in corporate governance, commercial contract structuring, domestic arbitration, RERA proceedings, NCLT insolvency petitions, and 30-year property title due diligence.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Corporate Lawyers in Lucknow, Uttar Pradesh | Zodiac Legal"
-  description="Corporate, commercial contract, UP-RERA, arbitration, and debt recovery lawyers in Vikas Nagar, Lucknow, Uttar Pradesh. View forums, statutes, and process."
+  title="Pan-India Corporate & Commercial Lawyers | Zodiac Legal"
+  description="Pan-India corporate, commercial contract, RERA, arbitration, and debt recovery legal practice advising enterprises and institutions across India."
   canonicalPath="/corporate-lawyers-in-lucknow/"
   lastReviewed="2026-10-16"
 >
   <section class="hero-obsidian-glow py-14 text-white border-b border-zinc-800">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <Breadcrumbs
-        items={[{ label: 'Corporate Lawyers in Lucknow', href: '/corporate-lawyers-in-lucknow/' }]}
+        items={[{ label: 'Pan-India Corporate Practice', href: '/corporate-lawyers-in-lucknow/' }]}
         invertText={true}
       />
       <p class="text-xs font-semibold tracking-widest text-amber-400 uppercase">
-        Regional Legal Guide • Lucknow &amp; Uttar Pradesh
+        National Practice Guide • Pan-India Jurisdiction
       </p>
       <h1 class="mt-2 font-serif text-3xl font-semibold text-white sm:text-4xl">
-        Corporate &amp; Commercial Legal Representation in Lucknow, Uttar Pradesh
+        Pan-India Corporate &amp; Commercial Legal Representation
       </h1>
       <p class="mt-4 max-w-3xl text-base leading-relaxed text-stone-300">
-        A practical guide to commercial courts, regulatory authorities, corporate compliance, and
-        dispute resolution for enterprises operating in Lucknow and Uttar Pradesh.
+        A comprehensive guide to commercial courts, regulatory authorities, corporate compliance,
+        and statutory dispute resolution for enterprises operating across India.
       </p>
     </div>
   </section>
 
-  <section class="py-16">
+  <section class="py-12 sm:py-16">
     <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
         <div class="legal-prose lg:col-span-8">
-          <h2>How does the corporate and commercial legal landscape work in Lucknow?</h2>
+          <h2>How does the corporate and commercial legal framework operate across India?</h2>
           <p>
-            As the administrative and judicial capital of Uttar Pradesh, <strong>Lucknow</strong> hosts
-            the principal benches of key constitutional, commercial, and regulatory forums—including the
-            <strong>Lucknow Bench of the High Court of Judicature at Allahabad</strong> (Vibhuti Khand,
-            Gomti Nagar), the <strong>Commercial Courts</strong>, the{' '}
-            <strong>Uttar Pradesh Real Estate Regulatory Authority (UP-RERA)</strong>, the{' '}
-            <strong>Debts Recovery Tribunal (DRT Lucknow)</strong>, and the{' '}
-            <strong>Uttar Pradesh State Consumer Disputes Redressal Commission (SCDRC)</strong>.
+            India’s commercial and regulatory architecture is governed by central statutes—including
+            the <strong>Companies Act, 2013</strong>, the <strong>Indian Contract Act, 1872</strong
+            >, the <strong>Insolvency and Bankruptcy Code, 2016 (IBC)</strong>, the{' '}
+            <strong>Arbitration and Conciliation Act, 1996</strong>, the{' '}
+            <strong>Commercial Courts Act, 2015</strong>, and the{' '}
+            <strong>Real Estate (Regulation and Development) Act, 2016 (RERA)</strong>—adjudicated
+            through specialized benches of the High Courts, Commercial Courts, National Company Law
+            Tribunal (NCLT), Debts Recovery Tribunals (DRT), and State RERA Authorities.
           </p>
           <p>
-            From our office in <strong>Vikas Nagar, Lucknow</strong>, Zodiac Legal advises
-            businesses operating across Lucknow’s primary commercial and industrial zones—including
-            Gomti Nagar, Hazratganj, Vibhuti Khand, Indira Nagar, Aliganj, Transport Nagar, and the
-            Amausi/Nadarganj industrial corridors—as well as out-of-state corporations with
-            contracts, debtors, or real estate assets in Uttar Pradesh.
+            <strong>Zodiac Legal</strong> advises domestic and multinational corporations, startups, promoters,
+            institutional lenders, and commercial stakeholders across India’s primary business corridors—providing
+            seamless contract architecture, regulatory filings, and multi-forum litigation representation.
           </p>
 
-          <h2>Key Judicial &amp; Regulatory Forums in Lucknow and Uttar Pradesh</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Forum / Authority</th>
-                <th>Primary Statutory Jurisdiction</th>
-                <th>Seat / Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>High Court (Lucknow Bench)</strong></td>
-                <td
-                  >Writ petitions (Art. 226), Sec. 11 arbitrator appointments, commercial appeals</td
-                >
-                <td>Gomti Nagar, Lucknow</td>
-              </tr>
-              <tr>
-                <td><strong>Commercial Courts</strong></td>
-                <td
-                  >Commercial disputes under Commercial Courts Act, 2015 &amp; Sec. 9/34 Arbitration</td
-                >
-                <td>Lucknow</td>
-              </tr>
-              <tr>
-                <td><strong>UP-RERA &amp; REAT</strong></td>
-                <td
-                  >Real estate project complaints, possession delay interest, refund &amp; appeals</td
-                >
-                <td>Lucknow</td>
-              </tr>
-              <tr>
-                <td><strong>Debts Recovery Tribunal (DRT)</strong></td>
-                <td>SARFAESI Act, 2002 Sec. 17 applications &amp; RDB Act recovery applications</td>
-                <td>Lucknow</td>
-              </tr>
-              <tr>
-                <td><strong>NCLT Allahabad Bench</strong></td>
-                <td
-                  >Corporate insolvency (IBC Sec. 7, 9) &amp; Companies Act oppression/mismanagement</td
-                >
-                <td>Prayagraj (UP Jurisdiction)</td>
-              </tr>
-              <tr>
-                <td><strong>ROC Uttar Pradesh</strong></td>
-                <td>Companies Act, 2013 &amp; LLP Act filings, charges, and compliance</td>
-                <td>Kanpur (UP Jurisdiction)</td>
-              </tr>
-            </tbody>
-          </table>
+          <h2>Key Judicial &amp; Regulatory Forums Across India</h2>
+          <div class="overflow-x-auto">
+            <table>
+              <thead>
+                <tr>
+                  <th>Forum / Authority</th>
+                  <th>Primary Statutory Jurisdiction</th>
+                  <th>Territorial Scope</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Supreme Court &amp; High Courts</strong></td>
+                  <td>
+                    Constitutional writs (Art. 32/226), Sec. 11/37 arbitration matters, commercial
+                    appeals
+                  </td>
+                  <td>Pan-India &amp; State Benches</td>
+                </tr>
+                <tr>
+                  <td><strong>Commercial Courts &amp; Divisions</strong></td>
+                  <td>
+                    Specified-value commercial disputes under Commercial Courts Act, 2015 &amp; Sec.
+                    9/34 Arbitration
+                  </td>
+                  <td>All Major Commercial Districts</td>
+                </tr>
+                <tr>
+                  <td><strong>State RERA Authorities &amp; REAT</strong></td>
+                  <td>
+                    Real estate project registration, possession delay interest, refunds &amp;
+                    appeals
+                  </td>
+                  <td>State-Wise Benches Nationwide</td>
+                </tr>
+                <tr>
+                  <td><strong>Debts Recovery Tribunals (DRT / DRAT)</strong></td>
+                  <td>
+                    SARFAESI Act, 2002 Sec. 17 applications &amp; RDB Act financial recovery
+                    petitions
+                  </td>
+                  <td>Regional Benches Across India</td>
+                </tr>
+                <tr>
+                  <td><strong>National Company Law Tribunal (NCLT)</strong></td>
+                  <td>
+                    Corporate insolvency (IBC Sec. 7, 9) &amp; Companies Act mergers/oppression
+                  </td>
+                  <td>Principal &amp; Regional Benches</td>
+                </tr>
+                <tr>
+                  <td><strong>Ministry of Corporate Affairs (MCA / ROC)</strong></td>
+                  <td>
+                    Central Registration Centre (CRC) incorporations, annual ROC filings &amp;
+                    charges
+                  </td>
+                  <td>Centralized Digital &amp; State ROCs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-          <h2>Core Corporate &amp; Litigation Services Offered in Lucknow</h2>
+          <h2>Core Corporate &amp; Litigation Services Offered Nationwide</h2>
           <ul>
             {
               PRACTICE_AREAS_NAV.map((area) => (
@@ -141,14 +151,14 @@ const localFaqs = [
           </ul>
 
           <div class="mt-10">
-            <h2>Frequently Asked Questions — Legal Matters in Lucknow</h2>
-            <FaqAccordion items={localFaqs} groupName="lucknow-faq" emitSchema={true} />
+            <h2>Frequently Asked Questions — Pan-India Corporate Representation</h2>
+            <FaqAccordion items={nationalFaqs} groupName="national-faq" emitSchema={true} />
           </div>
 
           <p class="mt-8 text-xs text-content-muted">
             <em>
-              Last Reviewed: 16 October 2026 • Reviewed by {SITE_CONFIG.name} Corporate &amp; Litigation
-              Desk, Lucknow. Informational only; not legal advice.
+              Last Reviewed: 16 October 2026 • Reviewed by {SITE_CONFIG.name} Pan-India Corporate &amp;
+              Litigation Desk. Informational only; not legal advice.
             </em>
           </p>
         </div>
