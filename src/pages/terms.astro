@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE_CONFIG } from '../data/siteConfig';
+---
+
+<BaseLayout
+  title="Terms of Use | Zodiac Legal Lucknow"
+  description="Terms of Use governing access to zodiaclegal.com, maintained by Zodiac Legal in Lucknow, Uttar Pradesh."
+  canonicalPath="/terms/"
+  lastReviewed="2026-10-16"
+>
+  <section class="bg-ink py-12 text-content-inverse border-b border-stone-800">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: 'Terms of Use', href: '/terms/' }]} invertText={true} />
+      <h1 class="mt-2 font-serif text-3xl font-semibold text-white">Terms of Use</h1>
+      <p class="mt-2 text-xs text-stone-300">Last Reviewed: 16 October 2026</p>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <div class="legal-prose">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing <code>zodiaclegal.com</code>, you acknowledge and agree to these Terms of Use
+          and the Bar Council of India Regulatory Disclaimer.
+        </p>
+
+        <h2>2. Informational Purpose &amp; No Legal Advice</h2>
+        <p>
+          All practice area descriptions, statutory guides, checklists, and FAQs published on this
+          website are for general informational purposes only. They do not constitute a legal
+          opinion or legal advice tailored to any specific factual situation.
+        </p>
+
+        <h2>3. No Advocate-Client Relationship</h2>
+        <p>
+          Viewing this website, downloading any guide, or submitting an inquiry through the
+          consultation form does not create an advocate-client relationship with{' '}
+          <strong>{SITE_CONFIG.name}</strong>. Do not transmit confidential or privileged documents
+          until a conflict check is completed and a formal written engagement is executed.
+        </p>
+
+        <h2>4. Governing Law &amp; Jurisdiction</h2>
+        <p>
+          These Terms of Use are governed by the laws of the Republic of India. Any dispute arising
+          out of the use of this website shall be subject to the exclusive jurisdiction of the
+          competent courts at Lucknow, Uttar Pradesh.
+        </p>
+
+        <p class="text-xs text-content-muted">
+          <em>Informational only; not legal advice.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

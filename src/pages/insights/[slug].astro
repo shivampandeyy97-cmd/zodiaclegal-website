@@ -1,0 +1,161 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import ConsultationForm from '../../components/ConsultationForm.astro';
+import { SITE_CONFIG, PRACTICE_AREAS_NAV } from '../../data/siteConfig';
+import { buildArticleSchema } from '../../utils/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights');
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'insights'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const parentPracticeArea = PRACTICE_AREAS_NAV.find(
+  (area) => area.slug === entry.data.practiceAreaSlug
+);
+
+const pageUrl = new URL(`/insights/${entry.slug}/`, SITE_CONFIG.url).toString();
+const articleSchema = buildArticleSchema({
+  title: entry.data.title,
+  description: entry.data.metaDescription,
+  url: pageUrl,
+  publishDate: entry.data.publishDate,
+  lastReviewed: entry.data.lastReviewed,
+  author: entry.data.author,
+});
+---
+
+<BaseLayout
+  title={entry.data.seoTitle}
+  description={entry.data.metaDescription}
+  canonicalPath={`/insights/${entry.slug}/`}
+  ogType="article"
+  lastReviewed={entry.data.lastReviewed}
+  extraSchema={articleSchema}
+>
+  <!-- Article Header -->
+  <section class="bg-ink py-14 text-content-inverse border-b border-stone-800">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs
+        items={[
+          { label: 'Legal Insights', href: '/insights/' },
+          { label: entry.data.title, href: `/insights/${entry.slug}/` },
+        ]}
+        invertText={true}
+      />
+      <div class="flex flex-wrap items-center gap-3 text-xs text-brass-light uppercase tracking-wider font-semibold">
+        <span>{entry.data.category}</span>
+        <span aria-hidden="true">•</span>
+        <span>{entry.data.readingTime}</span>
+      </div>
+      <h1 class="mt-2 max-w-4xl font-serif text-3xl font-semibold text-white sm:text-4xl">
+        {entry.data.title}
+      </h1>
+      <div class="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-stone-300">
+        <span><strong>Author:</strong> {entry.data.author}</span>
+        <span><strong>Reviewed by:</strong> {entry.data.reviewedBy}</span>
+        <span><strong>Last Reviewed:</strong> {entry.data.lastReviewed}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body & Sidebar -->
+  <section class="py-14 sm:py-18">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <article class="lg:col-span-8">
+          <!-- Answer-First Direct Summary Box -->
+          <div class="mb-8 rounded border-s-4 border-brass bg-paper-warm p-6">
+            <p class="text-xs font-semibold tracking-wider text-brass uppercase">
+              Direct Answer Summary
+            </p>
+            <p class="mt-2 text-base leading-relaxed font-medium text-content-primary">
+              {entry.data.directAnswer}
+            </p>
+          </div>
+
+          <!-- Key Takeaways Box -->
+          <div class="mb-10 rounded border border-border-strong bg-paper-card p-6">
+            <h2 class="font-serif text-lg font-semibold text-content-primary">
+              Key Statutory Takeaways
+            </h2>
+            <ul class="mt-3 space-y-2 text-sm text-content-secondary">
+              {
+                entry.data.keyTakeaways.map((point) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="font-bold text-brass" aria-hidden="true">✓</span>
+                    <span>{point}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Main Prose Content -->
+          <div class="legal-prose">
+            <Content />
+          </div>
+
+          <!-- Article FAQs -->
+          <div class="mt-12 border-t border-border-subtle pt-10">
+            <h2 class="font-serif text-2xl font-semibold text-content-primary mb-6">
+              Frequently Asked Questions on This Topic
+            </h2>
+            <FaqAccordion
+              items={entry.data.faqs}
+              groupName={`insight-faq-${entry.slug}`}
+              emitSchema={true}
+            />
+          </div>
+
+          <!-- Mandatory Legal Compliance Footnote -->
+          <div class="mt-10 rounded border border-border-subtle bg-paper-warm p-4 text-xs leading-relaxed text-content-muted">
+            <p>
+              <strong>Editorial &amp; Statutory Notice:</strong> Published on {entry.data.publishDate}
+              and last reviewed on {entry.data.lastReviewed} by {entry.data.reviewedBy}.{' '}
+              <em>Informational only; not legal advice.</em> For advice specific to your facts,
+              consult an enrolled Advocate.
+            </p>
+          </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="space-y-8 lg:col-span-4">
+          {
+            parentPracticeArea && (
+              <div class="card-surface rounded border border-border-strong bg-paper-card p-6">
+                <p class="text-xs font-semibold tracking-wider text-brass uppercase">
+                  Relevant Practice Desk
+                </p>
+                <h2 class="mt-1 font-serif text-xl font-semibold text-content-primary">
+                  {parentPracticeArea.title}
+                </h2>
+                <p class="mt-2 text-sm text-content-secondary">{parentPracticeArea.shortDesc}</p>
+                <a
+                  href={`/practice-areas/${parentPracticeArea.slug}/`}
+                  class="mt-4 inline-block text-xs font-semibold tracking-wider text-brass uppercase hover:underline"
+                >
+                  View Practice Area &amp; Document Checklist →
+                </a>
+              </div>
+            )
+          }
+
+          <ConsultationForm defaultPracticeArea={entry.data.practiceAreaSlug} compact={true} />
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

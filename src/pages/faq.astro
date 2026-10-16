@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import ConsultationForm from '../components/ConsultationForm.astro';
+import { buildFaqSchema } from '../utils/schema';
+
+const faqGroups = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
+const allFaqItems = faqGroups.flatMap((group) => group.data.items);
+const combinedFaqSchema = buildFaqSchema(allFaqItems);
+---
+
+<BaseLayout
+  title="Frequently Asked Questions | Zodiac Legal Lucknow"
+  description="Direct answers to common questions on company incorporation in UP, commercial contracts, Section 138 cheque bounce, UP-RERA complaints, NCLT, and consultations."
+  canonicalPath="/faq/"
+  lastReviewed="2026-10-16"
+  extraSchema={combinedFaqSchema}
+>
+  <section class="bg-ink py-14 text-content-inverse border-b border-stone-800">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: 'FAQ Hub', href: '/faq/' }]} invertText={true} />
+      <p class="text-xs font-semibold tracking-widest text-brass-light uppercase">
+        Answer-First Legal Reference
+      </p>
+      <h1 class="mt-2 font-serif text-3xl font-semibold text-white sm:text-4xl">
+        Frequently Asked Questions (FAQ)
+      </h1>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-stone-300">
+        Direct, statutory answers regarding corporate compliance, commercial agreements, UP-RERA,
+        insolvency and debt recovery, and engaging Zodiac Legal in Lucknow.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <div class="space-y-12 lg:col-span-8">
+          {
+            faqGroups.map((group, idx) => (
+              <div>
+                <h2 class="font-serif text-2xl font-semibold text-content-primary border-b border-border-subtle pb-3 mb-5">
+                  {group.data.category}
+                </h2>
+                <FaqAccordion
+                  items={group.data.items}
+                  groupName={`faq-group-${idx}`}
+                  emitSchema={false}
+                />
+              </div>
+            ))
+          }
+          <p class="text-xs text-content-muted">
+            <em>
+              Last Reviewed: 16 October 2026 • Reviewed by Zodiac Legal Corporate &amp; Litigation
+              Desk, Lucknow. Informational only; not legal advice.
+            </em>
+          </p>
+        </div>
+
+        <aside class="lg:col-span-4">
+          <ConsultationForm compact={true} />
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

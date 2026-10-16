@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PRACTICE_AREAS_NAV } from '../data/siteConfig';
+---
+
+<BaseLayout
+  title="Page Not Found (404) | Zodiac Legal"
+  description="The requested page could not be found on zodiaclegal.com. Browse our corporate practice areas, statutory insights, or contact our Lucknow desk."
+  canonicalPath="/404.html"
+  noindex={true}
+>
+  <section class="py-20">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p class="font-mono text-xs font-bold tracking-widest text-brass uppercase">
+          HTTP 404 • Route Not Found
+        </p>
+        <h1 class="mt-2 font-serif text-3xl font-semibold text-content-primary sm:text-4xl">
+          The page you requested has moved or does not exist.
+        </h1>
+        <p class="mt-4 text-base leading-relaxed text-content-secondary">
+          If you followed a legacy link from our previous website, please use the directory below to
+          reach the updated practice area, statutory guide, or consultation desk.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/"
+            class="btn-primary rounded-sm bg-ink px-5 py-3 text-xs font-semibold tracking-wider text-content-inverse uppercase hover:bg-ink-elevated dark:bg-brass dark:text-ink"
+          >
+            Return to Homepage
+          </a>
+          <a
+            href="/contact/"
+            class="rounded-sm border border-border-strong px-5 py-3 text-xs font-semibold tracking-wider text-content-primary uppercase hover:border-brass"
+          >
+            Contact Lucknow Desk
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-14 border-t border-border-subtle pt-10">
+        <h2 class="font-serif text-xl font-semibold text-content-primary">
+          Direct Links to Practice Areas
+        </h2>
+        <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            PRACTICE_AREAS_NAV.map((area) => (
+              <a
+                href={`/practice-areas/${area.slug}/`}
+                class="card-surface rounded border border-border-subtle bg-paper-card p-4 hover:border-border-strong"
+              >
+                <p class="font-serif text-base font-semibold text-content-primary">{area.title}</p>
+                <p class="mt-1 text-xs text-content-secondary">{area.shortDesc}</p>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ConsultationForm from '../../components/ConsultationForm.astro';
+import { SITE_CONFIG } from '../../data/siteConfig';
+
+const hindiPracticeAreas = [
+  {
+    title: 'कॉर्पोरेट और वाणिज्यिक कानून (Corporate & Commercial Law)',
+    href: '/practice-areas/corporate-commercial/',
+    desc: 'कंपनी अधिनियम 2013 के अंतर्गत प्राइवेट लिमिटेड कंपनी और LLP पंजीकरण (ROC कानपुर), शेयरधारक समझौते, और बोर्ड गवर्नेंस।',
+  },
+  {
+    title: 'संविदा और वाणिज्यिक अनुबंध (Contracts & Commercial Agreements)',
+    href: '/practice-areas/contracts-agreements/',
+    desc: 'मास्टर सर्विस एग्रीमेंट (MSA), वेंडर अनुबंध, NDA, और वाणिज्यिक अनुबंधों का प्रारूपण (Drafting) तथा विधिक परीक्षण (Vetting)।',
+  },
+  {
+    title: 'स्टार्टअप और नियामक अनुपालन (Startups & Regulatory Compliance)',
+    href: '/practice-areas/startups-compliance/',
+    desc: 'फाउंडर्स एग्रीमेंट, DPIIT स्टार्टअप इंडिया मान्यता, MSME पंजीकरण, और वार्षिक वैधानिक अनुपालन।',
+  },
+  {
+    title: 'विवाद समाधान और मध्यस्थता (Dispute Resolution & Arbitration)',
+    href: '/practice-areas/dispute-resolution-arbitration/',
+    desc: 'मध्यस्थता और सुलह अधिनियम 1996 के अंतर्गत आर्बिट्रेशन, कमर्शियल कोर्ट लखनऊ में वाद, और सिविल रिकवरी।',
+  },
+  {
+    title: 'रियल एस्टेट और यूपी-रेरा (Real Estate & UP-RERA)',
+    href: '/practice-areas/real-estate-rera/',
+    desc: 'संपत्ति टाइटल की जांच (Title Due Diligence), सेल डीड, लीज अनुबंध, और यूपी-रेरा (UP-RERA लखनऊ) में प्रतिनिधित्व।',
+  },
+  {
+    title: 'बैंकिंग, ऋण वसूली, NCLT और DRT (Debt Recovery & Insolvency)',
+    href: '/practice-areas/banking-finance-nclt-drt/',
+    desc: 'धारा 138 चेक बाउंस वाद, DRT लखनऊ (SARFAESI), और NCLT इलाहाबाद बेंच (IBC दिवाला कार्यवाही)।',
+  },
+  {
+    title: 'बौद्धिक संपदा अधिकार (Intellectual Property / Trademark)',
+    href: '/practice-areas/intellectual-property/',
+    desc: 'ट्रेडमार्क पंजीकरण, आक्षेप (Objection) का उत्तर, कॉपीराइट संरक्षण, और ब्रांड लाइसेंसिंग।',
+  },
+  {
+    title: 'श्रम एवं रोजगार कानून (Employment & Labour Law)',
+    href: '/practice-areas/employment-labour/',
+    desc: 'रोजगार अनुबंध, उ.प्र. दुकान और वाणिज्य अधिष्ठान अधिनियम 1962 अनुपालन, और POSH नीति।',
+  },
+  {
+    title: 'कराधान, जीएसटी और उपभोक्ता संरक्षण (Taxation, GST & Consumer Law)',
+    href: '/practice-areas/taxation-regulatory/',
+    desc: 'GST कारण बताओ नोटिस का उत्तर, MSME समाधान, और जिला व राज्य उपभोक्ता आयोग (लखनऊ) में प्रतिनिधित्व।',
+  },
+];
+---
+
+<BaseLayout
+  title="ज़ोडिएक लीगल (Zodiac Legal) | लखनऊ में कॉर्पोरेट और विधिक परामर्श"
+  description="ज़ोडिएक लीगल (विकास नगर, लखनऊ, उत्तर प्रदेश) — कॉर्पोरेट कानून, वाणिज्यिक अनुबंध, यूपी-रेरा, मध्यस्थता (आर्बिट्रेशन), और ऋण वसूली के लिए विधिक परामर्श।"
+  canonicalPath="/hi/"
+  lang="hi-IN"
+  lastReviewed="2026-10-16"
+>
+  <section class="bg-ink py-14 text-content-inverse border-b border-stone-800">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: 'हिंदी संस्करण (Hindi)', href: '/hi/' }]} invertText={true} />
+      <p class="text-xs font-semibold tracking-widest text-brass-light uppercase">
+        विकास नगर, लखनऊ • उत्तर प्रदेश
+      </p>
+      <h1 class="mt-2 font-serif text-3xl font-semibold text-white sm:text-4xl">
+        ज़ोडिएक लीगल (Zodiac Legal) — लखनऊ में कॉर्पोरेट एवं विधिक परामर्श
+      </h1>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-stone-300">
+        ज़ोडिएक लीगल उत्तर प्रदेश में व्यवसायों, स्टार्टअप्स, प्रमोटरों, ऋणदाताओं और संपत्ति स्वामियों को
+        कॉर्पोरेट गवर्नेंस, वाणिज्यिक अनुबंध, यूपी-रेरा (UP-RERA), मध्यस्थता और ऋण वसूली में स्पष्ट एवं
+        तथ्यपरक विधिक सहायता प्रदान करता है।
+      </p>
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a
+          href="/contact/#consultation-form"
+          class="rounded-sm bg-brass-light px-5 py-3 text-xs font-semibold text-ink uppercase hover:bg-white"
+        >
+          परामर्श हेतु समय निर्धारित करें (Book Consultation)
+        </a>
+        <a
+          href="/"
+          hreflang="en-IN"
+          class="rounded-sm border border-stone-600 px-5 py-3 text-xs font-semibold text-stone-200 uppercase hover:border-brass-light"
+        >
+          Switch to English Version
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-8 space-y-10">
+          <div>
+            <h2 class="font-serif text-2xl font-semibold text-content-primary">
+              प्रमुख विधिक कार्यक्षेत्र (Core Practice Areas)
+            </h2>
+            <p class="mt-2 text-sm text-content-secondary">
+              हमारे लखनऊ डेस्क द्वारा प्रदान की जाने वाली प्रमुख विधिक सेवाएँ:
+            </p>
+            <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {
+                hindiPracticeAreas.map((item) => (
+                  <article class="card-surface rounded border border-border-subtle bg-paper-card p-5">
+                    <h3 class="font-serif text-base font-semibold text-content-primary">
+                      <a href={item.href} class="hover:text-brass">
+                        {item.title}
+                      </a>
+                    </h3>
+                    <p class="mt-2 text-sm leading-relaxed text-content-secondary">{item.desc}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="rounded border border-border-strong bg-paper-warm p-6">
+            <h2 class="font-serif text-xl font-semibold text-content-primary">
+              बार काउंसिल ऑफ इंडिया (नियम 36) वैधानिक अस्वीकरण
+            </h2>
+            <p class="mt-2 text-sm leading-relaxed text-content-secondary">
+              बार काउंसिल ऑफ इंडिया के नियमों के तहत भारत में अधिवक्ताओं द्वारा कार्य की याचना या विज्ञापन करना
+              निषिद्ध है। यह वेबसाइट केवल उपयोगकर्ता के स्वयं के अनुरोध पर तथ्यात्मक जानकारी प्रदान करने के लिए है।
+              इस वेबसाइट को पढ़ने या फॉर्म भरने से अधिवक्ता-मुवक्किल संबंध स्थापित नहीं होता है।{' '}
+              <em>केवल सूचनात्मक; यह विधिक सलाह नहीं है (Informational only; not legal advice).</em>
+            </p>
+            <p class="mt-3 text-xs text-content-muted">
+              कार्यालय: विकास नगर, लखनऊ, उत्तर प्रदेश – {SITE_CONFIG.nap.postalCode} | दूरभाष:{' '}
+              {SITE_CONFIG.nap.phoneDisplay}
+            </p>
+          </div>
+        </div>
+
+        <aside class="lg:col-span-4">
+          <ConsultationForm compact={true} />
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
