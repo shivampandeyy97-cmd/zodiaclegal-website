@@ -1,0 +1,299 @@
+---
+import { PRACTICE_AREAS_NAV, SITE_CONFIG } from '../data/siteConfig';
+
+interface Props {
+  defaultPracticeArea?: string;
+  compact?: boolean;
+}
+
+const { defaultPracticeArea = '', compact = false } = Astro.props;
+const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787';
+---
+
+<div
+  id="consultation-form"
+  class="card-surface rounded border border-border-strong bg-paper-card p-6 shadow-sm sm:p-8"
+>
+  <div class="border-b border-border-subtle pb-4">
+    <p class="text-xs font-semibold tracking-widest text-brass uppercase">
+      Confidential Consultation Request
+    </p>
+    <h2 class="mt-1 font-serif text-2xl font-semibold text-content-primary">
+      Schedule a Legal Consultation
+    </h2>
+    <p class="mt-1.5 text-sm text-content-secondary">
+      Provide brief background details so our Lucknow desk can perform a preliminary conflict check
+      and coordinate an appointment.
+    </p>
+  </div>
+
+  <form
+    id="zl-consult-form"
+    action={`${apiUrl}/api/consult`}
+    method="POST"
+    class="mt-6 space-y-5"
+    novalidate
+  >
+    <!-- Anti-spam Honeypot Field (Hidden from assistive tech and visual layout) -->
+    <div class="hidden" aria-hidden="true">
+      <label for="zl-company-website">Company Website (Leave blank)</label>
+      <input
+        type="text"
+        id="zl-company-website"
+        name="website_url"
+        tabindex="-1"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class:list={['grid gap-5', compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2']}>
+      <div>
+        <label for="zl-full-name" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
+          Full Name <span class="text-brass" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="zl-full-name"
+          name="fullName"
+          required
+          minlength="2"
+          maxlength="120"
+          autocomplete="name"
+          placeholder="e.g., Rajeshwar Prasad"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="zl-phone" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
+          Phone / WhatsApp Number <span class="text-brass" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="tel"
+          id="zl-phone"
+          name="phone"
+          required
+          pattern="^[0-9+\\-\\s()]{8,20}$"
+          autocomplete="tel"
+          placeholder="+91 98XXX XXXXX"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+        />
+      </div>
+    </div>
+
+    <div class:list={['grid gap-5', compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2']}>
+      <div>
+        <label for="zl-email" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
+          Email Address <span class="text-brass" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="email"
+          id="zl-email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="name@company.com"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="zl-organization" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
+          Company / Organization <span class="text-content-muted font-normal">(Optional)</span>
+        </label>
+        <input
+          type="text"
+          id="zl-organization"
+          name="organization"
+          maxlength="140"
+          autocomplete="organization"
+          placeholder="Entity name or individual matter"
+          class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label for="zl-practice-area" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
+        Relevant Practice Area <span class="text-brass" aria-hidden="true">*</span>
+      </label>
+      <select
+        id="zl-practice-area"
+        name="practiceArea"
+        required
+        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+      >
+        <option value="" disabled selected={!defaultPracticeArea}>
+          Select a practice area...
+        </option>
+        {
+          PRACTICE_AREAS_NAV.map((area) => (
+            <option value={area.slug} selected={defaultPracticeArea === area.slug}>
+              {area.title}
+            </option>
+          ))
+        }
+        <option value="other">Other Corporate / Statutory Matter</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="zl-message" class="block text-xs font-semibold tracking-wide text-content-primary uppercase">
+        Brief Matter Overview (Non-Confidential Summary) <span class="text-brass" aria-hidden="true">*</span>
+      </label>
+      <textarea
+        id="zl-message"
+        name="message"
+        rows="4"
+        required
+        minlength="20"
+        maxlength="2500"
+        placeholder="State the nature of the transaction, contract, or dispute, the relevant forum/city in Uttar Pradesh, and any statutory deadline..."
+        class="mt-1.5 w-full rounded-sm border border-border-strong bg-paper px-3.5 py-2.5 text-sm text-content-primary focus:border-brass focus:outline-none"
+      ></textarea>
+    </div>
+
+    <div class="flex items-start gap-2.5">
+      <input
+        type="checkbox"
+        id="zl-bci-consent"
+        name="bciConsent"
+        value="accepted"
+        required
+        class="mt-1 h-4 w-4 shrink-0 rounded border-border-strong text-ink focus:ring-brass"
+      />
+      <label for="zl-bci-consent" class="text-xs leading-relaxed text-content-secondary">
+        I confirm that this inquiry is made of my own volition to seek information or schedule a
+        consultation with {SITE_CONFIG.name}, and I understand that submitting this form does not
+        create an advocate-client relationship until a formal engagement is executed.
+      </label>
+    </div>
+
+    <!-- Accessible Status Banner (Uses Icon + Text per modern-web-guidance `color`) -->
+    <div
+      id="zl-form-status"
+      role="status"
+      aria-live="polite"
+      hidden
+      class="rounded border p-3.5 text-sm"
+    >
+      <div class="flex items-start gap-2.5">
+        <span id="zl-form-status-icon" aria-hidden="true" class="font-bold"></span>
+        <p id="zl-form-status-text" class="font-medium"></p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+      <button
+        type="submit"
+        id="zl-submit-btn"
+        class="btn-primary rounded-sm bg-ink px-6 py-3 text-xs font-semibold tracking-wider text-content-inverse uppercase transition-colors hover:bg-ink-elevated dark:bg-brass dark:text-ink"
+      >
+        Submit Consultation Request
+      </button>
+      <p class="text-xs text-content-muted">
+        Direct Desk: <a href={`tel:${SITE_CONFIG.nap.phoneE164}`} class="font-medium text-content-primary underline">{SITE_CONFIG.nap.phoneDisplay}</a>
+      </p>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById('zl-consult-form');
+    const statusBox = document.getElementById('zl-form-status');
+    const statusIcon = document.getElementById('zl-form-status-icon');
+    const statusText = document.getElementById('zl-form-status-text');
+    const submitBtn = document.getElementById('zl-submit-btn');
+
+    if (!form || !(form instanceof HTMLFormElement)) return;
+
+    function showStatus(type, message) {
+      if (!statusBox || !statusIcon || !statusText) return;
+      statusBox.hidden = false;
+      if (type === 'error') {
+        statusBox.className = 'rounded border border-red-800 bg-red-50 p-3.5 text-sm text-red-900 dark:bg-red-950/60 dark:text-red-200';
+        statusIcon.textContent = '⚠';
+      } else {
+        statusBox.className = 'rounded border border-green-800 bg-green-50 p-3.5 text-sm text-green-900 dark:bg-green-950/60 dark:text-green-200';
+        statusIcon.textContent = '✓';
+      }
+      statusText.textContent = message;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      const fullName = String(data.get('fullName') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const practiceArea = String(data.get('practiceArea') || '').trim();
+      const message = String(data.get('message') || '').trim();
+      const bciConsent = data.get('bciConsent');
+
+      if (fullName.length < 2) {
+        showStatus('error', 'Please enter your full name (minimum 2 characters).');
+        return;
+      }
+      if (!/^[0-9+\-\s()]{8,20}$/.test(phone)) {
+        showStatus('error', 'Please enter a valid 10-digit Indian mobile or landline number.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('error', 'Please enter a valid email address.');
+        return;
+      }
+      if (!practiceArea) {
+        showStatus('error', 'Please select the relevant practice area.');
+        return;
+      }
+      if (message.length < 20) {
+        showStatus('error', 'Please provide a brief matter overview (at least 20 characters).');
+        return;
+      }
+      if (!bciConsent) {
+        showStatus('error', 'Please acknowledge the Bar Council of India non-solicitation notice.');
+        return;
+      }
+
+      if (submitBtn instanceof HTMLButtonElement) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting Request...';
+      }
+
+      try {
+        const payload = Object.fromEntries(data.entries());
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(result.error || 'Unable to process request right now.');
+        }
+
+        showStatus(
+          'success',
+          result.message ||
+            'Thank you. Your consultation inquiry has been logged by our Lucknow desk. We will respond within one business day.'
+        );
+        form.reset();
+      } catch (err) {
+        showStatus(
+          'error',
+          err instanceof Error && err.message && !err.message.includes('Failed to fetch')
+            ? err.message
+            : 'Our consultation server is unreachable from this network. Please call +91 98390 10163 or email contact@zodiaclegal.com directly.'
+        );
+      } finally {
+        if (submitBtn instanceof HTMLButtonElement) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Consultation Request';
+        }
+      }
+    });
+  })();
+</script>

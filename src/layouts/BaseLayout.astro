@@ -1,0 +1,167 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyMobileBar from '../components/StickyMobileBar.astro';
+import BciDisclaimerModal from '../components/BciDisclaimerModal.astro';
+import { SITE_CONFIG } from '../data/siteConfig';
+import {
+  buildOrganizationAndLegalServiceSchema,
+  buildWebPageSchema,
+} from '../utils/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  lang?: 'en-IN' | 'hi-IN';
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  lastReviewed?: string;
+  extraSchema?: Record<string, unknown> | Array<Record<string, unknown>>;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  lang = 'en-IN',
+  ogType = 'website',
+  ogImage = '/images/architectural-grid.svg',
+  lastReviewed,
+  extraSchema,
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, SITE_CONFIG.url).toString();
+const fullOgImage = new URL(ogImage, SITE_CONFIG.url).toString();
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
+const ga4Id = import.meta.env.PUBLIC_GA4_ID || '';
+
+const baseSchemas = [
+  ...buildOrganizationAndLegalServiceSchema(),
+  buildWebPageSchema({
+    title,
+    description,
+    url: canonicalUrl,
+    lastReviewed,
+  }),
+];
+
+const extraSchemasArray = extraSchema
+  ? Array.isArray(extraSchema)
+    ? extraSchema
+    : [extraSchema]
+  : [];
+
+const combinedSchemas = [...baseSchemas, ...extraSchemasArray];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Hreflang Alternates for English & Hindi -->
+    <link rel="alternate" hreflang="en-IN" href={new URL('/', SITE_CONFIG.url).toString()} />
+    <link rel="alternate" hreflang="hi-IN" href={new URL('/hi/', SITE_CONFIG.url).toString()} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', SITE_CONFIG.url).toString()} />
+
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+
+    <!-- Self-Hosted Critical Variable Fonts Preload -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/newsreader-latin-wght-normal.woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin-wght-normal.woff2"
+      crossorigin="anonymous"
+    />
+
+    <!-- Favicon & RSS -->
+    <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Zodiac Legal — Statutory Insights & Legal Updates"
+      href={new URL('/rss.xml', SITE_CONFIG.url).toString()}
+    />
+    <link rel="author" href="/humans.txt" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content={SITE_CONFIG.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:locale" content={lang.replace('-', '_')} />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- JSON-LD Structured Data Graph -->
+    {
+      combinedSchemas.map((schemaObj) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schemaObj)} />
+      ))
+    }
+
+    <!-- Consent-Gated Google Analytics 4 (Zero render-blocking scripts) -->
+    {
+      ga4Id && (
+        <script is:inline define:vars={{ ga4Id }}>
+          window.addEventListener('load', () => {
+            if (localStorage.getItem('zodiaclegal_bci_acknowledged_v1') === 'true') {
+              const s = document.createElement('script');
+              s.async = true;
+              s.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+              document.head.appendChild(s);
+              window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                window.dataLayer.push(arguments);
+              }
+              gtag('js', new Date());
+              gtag('config', ga4Id, { anonymize_ip: true });
+            }
+          });
+        </script>
+      )
+    }
+  </head>
+  <body class="bg-paper text-content-primary pb-14 lg:pb-0">
+    <!-- Accessibility Skip Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-ink focus:px-4 focus:py-2.5 focus:text-xs focus:font-semibold focus:text-white focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
+
+    <BciDisclaimerModal />
+    <Header />
+
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+    <StickyMobileBar />
+  </body>
+</html>

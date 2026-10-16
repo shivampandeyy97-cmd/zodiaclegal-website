@@ -1,0 +1,73 @@
+---
+import { SITE_CONFIG } from '../data/siteConfig';
+
+export interface BreadcrumbItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  invertText?: boolean;
+}
+
+const { items, invertText = false } = Astro.props;
+const fullTrail: BreadcrumbItem[] = [{ label: 'Home', href: '/' }, ...items];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: fullTrail.map((item, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: item.label,
+    item: new URL(item.href, SITE_CONFIG.url).toString(),
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class="mb-4">
+  <ol
+    class:list={[
+      'flex flex-wrap items-center gap-1.5 text-xs',
+      invertText ? 'text-stone-300' : 'text-content-muted',
+    ]}
+  >
+    {
+      fullTrail.map((item, index) => {
+        const isLast = index === fullTrail.length - 1;
+        return (
+          <li class="flex items-center gap-1.5">
+            {index > 0 && (
+              <span aria-hidden="true" class={invertText ? 'text-stone-500' : 'text-content-muted'}>
+                /
+              </span>
+            )}
+            {isLast ? (
+              <span
+                aria-current="page"
+                class:list={[
+                  'font-medium',
+                  invertText ? 'text-brass-light' : 'text-content-primary',
+                ]}
+              >
+                {item.label}
+              </span>
+            ) : (
+              <a
+                href={item.href}
+                class:list={[
+                  'transition-colors hover:underline',
+                  invertText ? 'hover:text-white' : 'hover:text-brass',
+                ]}
+              >
+                {item.label}
+              </a>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

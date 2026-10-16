@@ -1,0 +1,145 @@
+---
+import { PRACTICE_AREAS_NAV, SITE_CONFIG } from '../data/siteConfig';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-border-subtle bg-ink text-stone-300">
+  <div class="mx-auto max-w-container px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
+      <!-- Column 1: Firm Identity & Verifiable NAP -->
+      <div class="lg:col-span-4">
+        <a href="/" class="inline-block" aria-label="Zodiac Legal Home">
+          <img
+            src="/brand/logo-light.svg"
+            alt="Zodiac Legal"
+            width="235"
+            height="40"
+            loading="lazy"
+            class="h-10 w-auto"
+          />
+        </a>
+        <p class="mt-4 text-sm leading-relaxed text-stone-300">
+          {SITE_CONFIG.descriptions.short50}
+        </p>
+        <address class="mt-5 not-italic text-sm space-y-1.5 text-stone-300">
+          <p class="font-semibold text-white">{SITE_CONFIG.nap.firmName}</p>
+          <p>{SITE_CONFIG.nap.streetAddress}</p>
+          <p>
+            {SITE_CONFIG.nap.locality}, {SITE_CONFIG.nap.region} – {SITE_CONFIG.nap.postalCode},{' '}
+            {SITE_CONFIG.nap.country}
+          </p>
+          <p class="pt-1">
+            <span class="text-stone-400">Tel: </span>
+            <a href={`tel:${SITE_CONFIG.nap.phoneE164}`} class="text-brass-light hover:underline">
+              {SITE_CONFIG.nap.phoneDisplay}
+            </a>
+          </p>
+          <p>
+            <span class="text-stone-400">Email: </span>
+            <a href={`mailto:${SITE_CONFIG.nap.email}`} class="text-brass-light hover:underline">
+              {SITE_CONFIG.nap.email}
+            </a>
+          </p>
+          <p class="text-xs text-stone-400 pt-1">{SITE_CONFIG.nap.hours}</p>
+        </address>
+      </div>
+
+      <!-- Column 2: Practice Areas -->
+      <div class="lg:col-span-4">
+        <h2 class="font-serif text-base font-semibold tracking-wide text-white">Practice Areas</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          {
+            PRACTICE_AREAS_NAV.map((area) => (
+              <li>
+                <a
+                  href={`/practice-areas/${area.slug}/`}
+                  class="text-stone-300 transition-colors hover:text-brass-light"
+                >
+                  {area.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Column 3: Institutional Links & Local Presence -->
+      <div class="lg:col-span-4">
+        <h2 class="font-serif text-base font-semibold tracking-wide text-white">
+          Firm &amp; Statutory Resources
+        </h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>
+            <a href="/about/" class="text-stone-300 hover:text-brass-light">About Zodiac Legal</a>
+          </li>
+          <li>
+            <a href="/team/" class="text-stone-300 hover:text-brass-light">
+              Practice Desks &amp; Counsel
+            </a>
+          </li>
+          <li>
+            <a href="/insights/" class="text-stone-300 hover:text-brass-light">
+              Legal Insights &amp; Statutory Guides
+            </a>
+          </li>
+          <li>
+            <a href="/faq/" class="text-stone-300 hover:text-brass-light">
+              Frequently Asked Questions (FAQ)
+            </a>
+          </li>
+          <li>
+            <a
+              href="/corporate-lawyers-in-lucknow/"
+              class="text-stone-300 hover:text-brass-light"
+            >
+              Corporate Lawyers in Lucknow (UP Guide)
+            </a>
+          </li>
+          <li>
+            <a href="/hi/" hreflang="hi-IN" class="text-stone-300 hover:text-brass-light">
+              हिंदी संस्करण (Hindi Overview)
+            </a>
+          </li>
+          <li>
+            <a href="/contact/" class="text-stone-300 hover:text-brass-light">
+              Schedule a Consultation
+            </a>
+          </li>
+          <li>
+            <a href="/rss.xml" class="text-stone-300 hover:text-brass-light">
+              Insights RSS Feed
+            </a>
+          </li>
+        </ul>
+
+        <div class="mt-6 rounded border border-stone-700/80 bg-ink-elevated p-3.5 text-xs text-stone-300">
+          <p class="font-semibold text-brass-light">Primary Forums in Uttar Pradesh</p>
+          <p class="mt-1 leading-relaxed">
+            High Court at Allahabad (Lucknow Bench) • Commercial Courts • NCLT Allahabad • DRT
+            Lucknow • UP-RERA • Consumer Commissions
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar Council of India Rule 36 Mandatory Footer Disclaimer -->
+    <div class="mt-10 border-t border-stone-800 pt-6 text-xs leading-relaxed text-stone-400">
+      <p>
+        <strong class="text-stone-200">Regulatory Disclaimer (Bar Council of India Rule 36):</strong>{' '}
+        {SITE_CONFIG.bciDisclaimerFull} All content on this website is informational only and does not
+        constitute legal advice.
+      </p>
+      <div
+        class="mt-4 flex flex-col justify-between gap-4 border-t border-stone-800/80 pt-4 sm:flex-row sm:items-center"
+      >
+        <p>© {currentYear} {SITE_CONFIG.name}. All rights reserved. Lucknow, Uttar Pradesh, India.</p>
+        <nav aria-label="Legal and Policy Links" class="flex flex-wrap gap-5">
+          <a href="/disclaimer/" class="hover:text-brass-light">BCI Disclaimer</a>
+          <a href="/privacy-policy/" class="hover:text-brass-light">Privacy Policy (DPDP Act)</a>
+          <a href="/terms/" class="hover:text-brass-light">Terms of Use</a>
+          <a href="/llms.txt" class="hover:text-brass-light">llms.txt</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>

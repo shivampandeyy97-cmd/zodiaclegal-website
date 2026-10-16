@@ -1,0 +1,165 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-paper);
+    color: var(--color-text-primary);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    line-height: 1.6;
+    text-align: start;
+    overflow-wrap: break-word;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Intentional text wrapping per modern-web-guidance `typography` */
+  h1,
+  h2,
+  h3,
+  h4,
+  th {
+    font-family: var(--font-serif);
+    line-height: 1.2;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+
+  p,
+  li,
+  blockquote,
+  dd {
+    text-wrap: pretty;
+  }
+
+  /* Accessible Keyboard Focus State (WCAG 2.2 AA Focus Appearance) */
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+}
+
+/* Native Modal Dialog Scroll Containment per modern-web-guidance `prevent-page-scroll-under-modal-dialog` */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(11, 19, 43, 0.78);
+  backdrop-filter: blur(3px);
+}
+
+/* Offscreen Content Rendering Deferral per modern-web-guidance `defer-rendering-heavy-content` */
+.section-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 520px;
+}
+
+/* Prose / Editorial Styling for Practice Areas & Legal Insights */
+.legal-prose {
+  max-width: var(--max-width-prose);
+  font-size: var(--text-base);
+  line-height: 1.72;
+  color: var(--color-text-primary);
+}
+
+.legal-prose h2 {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 0.875rem;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.legal-prose h3 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.625rem;
+  color: var(--color-text-primary);
+}
+
+.legal-prose p {
+  margin-bottom: 1.25rem;
+  color: var(--color-text-secondary);
+}
+
+.legal-prose ul,
+.legal-prose ol {
+  margin-bottom: 1.5rem;
+  padding-inline-start: 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+.legal-prose ul {
+  list-style-type: disc;
+}
+
+.legal-prose ol {
+  list-style-type: decimal;
+}
+
+.legal-prose li {
+  margin-bottom: 0.5rem;
+}
+
+.legal-prose strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.legal-prose blockquote {
+  border-inline-start: 3px solid var(--color-brass);
+  padding-inline-start: 1.25rem;
+  margin: 1.75rem 0;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.legal-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: var(--text-sm);
+}
+
+.legal-prose th,
+.legal-prose td {
+  border: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+  text-align: start;
+}
+
+.legal-prose th {
+  background-color: var(--color-paper-warm);
+  font-family: var(--font-sans);
+  font-weight: 600;
+}

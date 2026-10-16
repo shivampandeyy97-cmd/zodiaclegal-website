@@ -1,0 +1,44 @@
+---
+import { buildFaqSchema } from '../utils/schema';
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: ReadonlyArray<FaqItem>;
+  groupName?: string;
+  emitSchema?: boolean;
+}
+
+const { items, groupName = 'faq-accordion', emitSchema = true } = Astro.props;
+const faqSchema = emitSchema && items.length > 0 ? buildFaqSchema(items) : null;
+---
+
+<div class="space-y-3">
+  {
+    items.map((faq, idx) => (
+      <details
+        name={groupName}
+        open={idx === 0}
+        class="group rounded border border-border-subtle bg-paper-card transition-colors open:border-border-strong"
+      >
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-serif text-base font-semibold text-content-primary select-none hover:text-brass">
+          <span>{faq.question}</span>
+          <span
+            aria-hidden="true"
+            class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border-strong text-xs font-sans text-content-secondary transition-transform duration-150 group-open:rotate-45"
+          >
+            +
+          </span>
+        </summary>
+        <div class="border-t border-border-subtle px-5 py-4 text-sm leading-relaxed text-content-secondary">
+          <p>{faq.answer}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}

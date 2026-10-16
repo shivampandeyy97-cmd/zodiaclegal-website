@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Zodiac Legal — Design System Tokens (Quiet Authority / Corporate Gravitas)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Newsreader Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('/fonts/newsreader-latin-wght-normal.woff2') format('woff2-variations');
+  size-adjust: 102%;
+}
+
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* Typography Families */
+  --font-serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Fluid Type Scale (rem + vw clamp per modern-web-guidance `typography`) */
+  --text-xs: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.84rem + 0.15vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.06rem + 0.28vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.32rem + 0.8vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.6rem + 1.25vw, 2.625rem);
+  --text-4xl: clamp(2.25rem, 1.85rem + 1.8vw, 3.5rem);
+
+  /* Brand Palette Derived from Zodiac Legal Mark (Light Mode Default) */
+  --color-ink: #0b132b;
+  --color-ink-elevated: #131f42;
+  --color-ink-muted: #1e2d56;
+
+  --color-paper: #f8f6f0;
+  --color-paper-warm: #f1ede2;
+  --color-surface: #ffffff;
+
+  --color-brass: #9a7432; /* >= 4.5:1 contrast on #f8f6f0 for text/icons */
+  --color-brass-light: #c9a55c; /* High contrast accent on dark #0b132b ink */
+  --color-brass-dark: #785820;
+
+  --color-text-primary: #0b132b;
+  --color-text-secondary: #374151;
+  --color-text-muted: #525b6c;
+  --color-text-inverse: #f8f6f0;
+
+  /* Borders meet 3:1 non-text contrast requirement where framing inputs/controls */
+  --color-border: #d5cfc0;
+  --color-border-strong: #6e7687;
+
+  /* Semantic Status Colors */
+  --color-success: #14532d;
+  --color-success-bg: #dcfce7;
+  --color-error: #7f1d1d;
+  --color-error-bg: #fee2e2;
+
+  /* Spacing & Layout */
+  --max-width-container: 75rem; /* 1200px */
+  --max-width-prose: 68ch;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+}
+
+/* Dark Theme Tokens (Respects user preference or explicit toggle) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-paper: #080e20;
+    --color-paper-warm: #0d1630;
+    --color-surface: #121d3d;
+
+    --color-brass: #d4b26a;
+    --color-brass-light: #e2c688;
+    --color-brass-dark: #b8924a;
+
+    --color-text-primary: #f4f1ea;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94a3b8;
+    --color-text-inverse: #0b132b;
+
+    --color-border: #23325b;
+    --color-border-strong: #7e8ea8;
+
+    --color-success: #bbf7d0;
+    --color-success-bg: #14532d;
+    --color-error: #fecaca;
+    --color-error-bg: #7f1d1d;
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-paper: #080e20;
+  --color-paper-warm: #0d1630;
+  --color-surface: #121d3d;
+
+  --color-brass: #d4b26a;
+  --color-brass-light: #e2c688;
+  --color-brass-dark: #b8924a;
+
+  --color-text-primary: #f4f1ea;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #0b132b;
+
+  --color-border: #23325b;
+  --color-border-strong: #7e8ea8;
+
+  --color-success: #bbf7d0;
+  --color-success-bg: #14532d;
+  --color-error: #fecaca;
+  --color-error-bg: #7f1d1d;
+}
+
+/* Windows High Contrast / Forced Colors Mode Fallbacks (per modern-web-guidance `color`) */
+@media (forced-colors: active) {
+  :root {
+    --color-border: CanvasText;
+    --color-border-strong: CanvasText;
+    --color-brass: LinkText;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .card-surface {
+    border: 1px solid ButtonText;
+  }
+}
