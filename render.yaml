@@ -1,0 +1,164 @@
+services:
+  # 1. Astro Static Site (zodiaclegal.com)
+  - type: web
+    name: zodiaclegal-web
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PUBLIC_SITE_URL
+        value: https://zodiaclegal.com
+      - key: PUBLIC_API_URL
+        sync: false
+      - key: PUBLIC_GA4_ID
+        sync: false
+      - key: PUBLIC_GSC_VERIFICATION
+        sync: false
+    headers:
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=63072000; includeSubDomains; preload
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=(), payment=()
+      - path: /*
+        name: Content-Security-Policy
+        value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://*.onrender.com https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.onrender.com;"
+      - path: /fonts/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /_astro/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /brand/*
+        name: Cache-Control
+        value: public, max-age=604800, stale-while-revalidate=86400
+    routes:
+      # 301 Redirects from Legacy Wix Routes to Canonical Astro Routes
+      - type: redirect
+        source: /home
+        destination: /
+      - type: redirect
+        source: /index.html
+        destination: /
+      - type: redirect
+        source: /about-us
+        destination: /about/
+      - type: redirect
+        source: /about-1
+        destination: /about/
+      - type: redirect
+        source: /our-firm
+        destination: /about/
+      - type: redirect
+        source: /services
+        destination: /practice-areas/
+      - type: redirect
+        source: /our-services
+        destination: /practice-areas/
+      - type: redirect
+        source: /practice-area
+        destination: /practice-areas/
+      - type: redirect
+        source: /service-page/corporate-law
+        destination: /practice-areas/corporate-commercial/
+      - type: redirect
+        source: /service-page/contract-drafting
+        destination: /practice-areas/contracts-agreements/
+      - type: redirect
+        source: /service-page/startup-consultation
+        destination: /practice-areas/startups-compliance/
+      - type: redirect
+        source: /service-page/dispute-resolution
+        destination: /practice-areas/dispute-resolution-arbitration/
+      - type: redirect
+        source: /service-page/real-estate-rera
+        destination: /practice-areas/real-estate-rera/
+      - type: redirect
+        source: /service-page/trademark-ip
+        destination: /practice-areas/intellectual-property/
+      - type: redirect
+        source: /service-page/employment-law
+        destination: /practice-areas/employment-labour/
+      - type: redirect
+        source: /service-page/debt-recovery
+        destination: /practice-areas/banking-finance-nclt-drt/
+      - type: redirect
+        source: /service-page/consumer-law
+        destination: /practice-areas/taxation-regulatory/
+      - type: redirect
+        source: /our-team
+        destination: /team/
+      - type: redirect
+        source: /attorneys
+        destination: /team/
+      - type: redirect
+        source: /advocates
+        destination: /team/
+      - type: redirect
+        source: /blog
+        destination: /insights/
+      - type: redirect
+        source: /blog/*
+        destination: /insights/
+      - type: redirect
+        source: /post/*
+        destination: /insights/
+      - type: redirect
+        source: /faqs
+        destination: /faq/
+      - type: redirect
+        source: /contact-us
+        destination: /contact/
+      - type: redirect
+        source: /book-online
+        destination: /contact/
+      - type: redirect
+        source: /terms-and-conditions
+        destination: /terms/
+      - type: redirect
+        source: /privacy
+        destination: /privacy-policy/
+      - type: redirect
+        source: /lawyer-in-lucknow
+        destination: /corporate-lawyers-in-lucknow/
+      - type: redirect
+        source: /pages-sitemap.xml
+        destination: /sitemap-index.xml
+      - type: redirect
+        source: /sitemap.xml
+        destination: /sitemap-index.xml
+
+  # 2. Consultation API Web Service (/server)
+  - type: web
+    name: zodiaclegal-api
+    runtime: node
+    plan: starter
+    buildCommand: npm ci --omit=dev
+    startCommand: node server/index.mjs
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PORT
+        value: "8787"
+      - key: ALLOWED_ORIGINS
+        value: https://zodiaclegal.com,https://www.zodiaclegal.com
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CONTACT_RECEIVER_EMAIL
+        value: contact@zodiaclegal.com
+      - key: CONTACT_SENDER_EMAIL
+        value: notifications@zodiaclegal.com
