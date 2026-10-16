@@ -1,105 +1,85 @@
-# Render Deployment, DNS Cut-Over & Local SEO Launch Checklist (`zodiaclegal.com`)
+# Render Deployment, GoDaddy DNS Cut-Over & Local SEO Runbook (`zodiaclegal.com`)
 
-This runbook provides step-by-step instructions to deploy `zodiaclegal-website` to **Render**, preserve existing **email (MX/SPF/DKIM/DMARC)** records, switch DNS from Wix to Render with zero downtime, and complete post-launch Google Search Console & Google Business Profile verification.
-
----
-
-## Part 1: Pre-Launch Owner Verification (Before Switching DNS)
-
-Review [`docs/open-items.md`](open-items.md) and confirm:
-
-1. [ ] **Exact Chamber / Plot Number in Vikas Nagar, Lucknow** is updated in [`src/data/siteConfig.ts`](../src/data/siteConfig.ts).
-2. [ ] **Primary Phone & WhatsApp Number** (`+91 98390 10163`) and **Official Email** (`contact@zodiaclegal.com`) are verified in `src/data/siteConfig.ts`.
-3. [ ] **Original Logo Asset** (if different from `/public/brand/logo.svg`) is placed in `/public/brand/`.
-4. [ ] **Individual Advocate Names & Bar Council of UP Enrolment Numbers** are updated in `src/content/team/*.md`.
+This runbook documents the live GitHub repository, 1-click **Render Blueprint** deployment, and the exact **GoDaddy DNS cut-over** steps from Wix (`ns14.wixdns.net` / `ns15.wixdns.net`) to Render (`216.24.57.1` & `zodiaclegal-web.onrender.com`).
 
 ---
 
-## Part 2: Push to Private GitHub Repository
+## Part 1: Live GitHub Repository (Completed)
 
-If `gh` (GitHub CLI) was not yet authenticated on your workstation:
+Both the `main` (production) and `develop` (staging) branches have been pushed to GitHub:
 
-```bash
-brew install gh
-gh auth login
-gh repo create zodiaclegal-website --private --source=. --remote=origin --push
-git push -u origin develop
-```
-
-Configure branch protection on GitHub (`Settings → Branches → Add branch protection rule` for `main`):
-
-- [ ] Require a pull request before merging
-- [ ] Require status checks to pass before merging (`Quality, Unit Tests, E2E & Lighthouse CI`)
+- **Repository URL:** `https://github.com/shivampandeyy97-cmd/zodiaclegal-website`
+- **Render Blueprint File:** [`render.yaml`](../render.yaml) (pre-configured with `zodiaclegal.com` and `www.zodiaclegal.com` custom domains, HSTS/CSP headers, 31 legacy Wix `301` redirects, and the `/server` Consultation API).
 
 ---
 
-## Part 3: Deploy Blueprint on Render
+## Part 2: 1-Click Render Blueprint Deployment
 
-1. Log in to [Render Dashboard](https://dashboard.render.com/).
-2. Click **New +** → **Blueprint**.
-3. Connect the private GitHub repository `zodiaclegal-website` (`main` branch).
-4. Render will automatically detect [`render.yaml`](../render.yaml) and provision two services:
-   - **`zodiaclegal-web`** (Static Site — publishes `./dist` with HSTS, CSP, immutable font/asset caching, and 301 redirects)
-   - **`zodiaclegal-api`** (Node Web Service — runs `node server/index.mjs` with `/healthz` monitoring)
-5. Populate the secret environment variables prompted by Render:
-   - On `zodiaclegal-api`:
-     - `RESEND_API_KEY`: Your Resend API key (`re_...`)
-     - `CONTACT_RECEIVER_EMAIL`: `contact@zodiaclegal.com`
-   - On `zodiaclegal-web`:
-     - `PUBLIC_API_URL`: The `https://zodiaclegal-api.onrender.com` URL assigned by Render
-     - `PUBLIC_GA4_ID`: Your GA4 Measurement ID (`G-...`)
-     - `PUBLIC_GSC_VERIFICATION`: Your Google Search Console meta tag token
-6. Verify the staging deployment on `https://zodiaclegal-web.onrender.com` and test `https://zodiaclegal-api.onrender.com/healthz`.
+1. Open the direct Render Blueprint launcher for your repository:
+   - **1-Click Deploy URL:** `https://dashboard.render.com/blueprint/new?repo=https://github.com/shivampandeyy97-cmd/zodiaclegal-website`
+   - _(Or in [Render Dashboard](https://dashboard.render.com/), click **New +** → **Blueprint** → select `shivampandeyy97-cmd/zodiaclegal-website`)._
+2. Give the Blueprint a name (e.g., `zodiaclegal-production`) and click **Apply**.
+3. Render will automatically provision and deploy both services defined in [`render.yaml`](../render.yaml):
+   - **`zodiaclegal-web`** (Static Site — builds `./dist`, attaches custom domains `zodiaclegal.com` and `www.zodiaclegal.com`, and configures all 31 Wix `301` redirects).
+   - **`zodiaclegal-api`** (Node Web Service — runs `node server/index.mjs` on port `8787` with `/healthz` health check).
+4. _(Optional)_ Once your Resend email key or Google Analytics 4 ID are ready, add them under **Environment** in the Render Dashboard:
+   - On `zodiaclegal-api`: `RESEND_API_KEY` (`re_...`)
+   - On `zodiaclegal-web`: `PUBLIC_GA4_ID` (`G-...`) and `PUBLIC_GSC_VERIFICATION`
 
 ---
 
-## Part 4: DNS Cut-Over Plan (Wix → Render) & Email Preservation
+## Part 3: GoDaddy DNS Cut-Over (`zodiaclegal.com` — Wix → Render)
 
-> **CRITICAL WARNING — PRESERVE EMAIL (MX / SPF / DKIM / DMARC) RECORDS:**  
-> If your domain’s nameservers (`NS`) are currently pointed to Wix (`nsXX.wixdns.net`), **do NOT delete or overwrite your `MX`, `TXT` (`v=spf1 ...`), `DKIM` (`*._domainkey`), or `_dmarc` records** when moving DNS. Before making any DNS changes, export a full backup of your current DNS zone file.
+### Live DNS Audit Findings (`dig` / `whois` Snapshot)
 
-### Step 4.1 — 24 Hours Before Cut-Over
+- **Registrar:** GoDaddy.com, LLC (Expires `2029-07-29`)
+- **Current Nameservers:** `NS14.WIXDNS.NET` and `NS15.WIXDNS.NET`
+- **Current Root `A` Records (Wix):** `185.230.63.171`, `185.230.63.107`, `185.230.63.186`
+- **Current `www` `CNAME` Record (Wix):** `cdn3.wixdns.net`
+- **Current `MX` / `TXT` Records:** None detected on `zodiaclegal.com` (check your Wix DNS panel before switching if you ever added custom email records).
 
-- [ ] Log in to your domain registrar / DNS host for `zodiaclegal.com`.
-- [ ] Screenshot and export all existing `A`, `CNAME`, `MX`, `TXT` (SPF/DKIM/DMARC/Google verification), and `SRV` records.
-- [ ] Lower the **TTL** on the root `@` (`A` record) and `www` (`CNAME` record) to **300 seconds (5 minutes)**.
+### Step 3.1 — Switch Nameservers from Wix to GoDaddy Default Nameservers
 
-### Step 4.2 — Attach Custom Domain in Render
+Because `zodiaclegal.com` currently uses Wix nameservers (`NS14.WIXDNS.NET` / `NS15.WIXDNS.NET`), GoDaddy disables DNS record editing until you switch back to GoDaddy's default nameservers:
 
-- [ ] In Render Dashboard → `zodiaclegal-web` → **Settings** → **Custom Domains**, click **Add Custom Domain**.
-- [ ] Enter `zodiaclegal.com` (Render will automatically add `www.zodiaclegal.com` as a redirect alias).
+1. Log in to your [GoDaddy Portfolio](https://dcc.godaddy.com/domains) and select **`zodiaclegal.com`**.
+2. Go to **DNS** → **Nameservers** → click **Change Nameservers**.
+3. Select **I'll use GoDaddy nameservers (Recommended)** and click **Save / Continue**.
 
-### Step 4.3 — Update Only the Web `A` and `CNAME` Records
+### Step 3.2 — Add Render's `A` and `CNAME` Records in GoDaddy DNS
 
-Update **only** the web traffic records (leaving all `MX` and email `TXT` records untouched):
+In GoDaddy → **DNS** → **DNS Records** for `zodiaclegal.com`, delete any parked `@` (`A`) or `www` (`CNAME`) records and set the exact records below:
 
-| Record Type | Host / Name | Value / Target                                      | TTL |
-| :---------- | :---------- | :-------------------------------------------------- | :-- |
-| **`A`**     | `@` (root)  | `216.24.57.1` _(Render's anycast load balancer IP)_ | 300 |
-| **`CNAME`** | `www`       | `zodiaclegal-web.onrender.com`                      | 300 |
+| Type        | Name (Host) | Value (Points to)              | TTL                       |
+| :---------- | :---------- | :----------------------------- | :------------------------ |
+| **`A`**     | `@`         | `216.24.57.1`                  | 600 seconds (or 1/2 Hour) |
+| **`CNAME`** | `www`       | `zodiaclegal-web.onrender.com` | 600 seconds (or 1/2 Hour) |
 
-- [ ] Click **Verify** in the Render Custom Domains panel.
-- [ ] Wait 5–15 minutes for Render to automatically provision and activate the free Let’s Encrypt TLS/SSL certificate for both `zodiaclegal.com` and `www.zodiaclegal.com`.
-- [ ] Keep any legacy Wix account active for 48 hours until global DNS propagation finishes, then raise TTL back to `3600`.
+> **Important Note on Email (`MX` / `TXT`):**  
+> If you use Google Workspace, Microsoft 365, or Zoho Mail for `@zodiaclegal.com`, keep your `MX`, `TXT` (`v=spf1 ...`), and `DKIM` records intact in GoDaddy DNS. Only the `@` (`A`) and `www` (`CNAME`) records should point to Render.
+
+### Step 3.3 — Verify Custom Domain & SSL in Render
+
+1. In [Render Dashboard](https://dashboard.render.com/) → **`zodiaclegal-web`** → **Settings** → **Custom Domains**, you will see `zodiaclegal.com` and `www.zodiaclegal.com` (automatically added by `render.yaml`).
+2. Click **Verify** next to `zodiaclegal.com` and `www.zodiaclegal.com`.
+3. Render will automatically issue and activate a free Let's Encrypt TLS/SSL certificate within 5–15 minutes once GoDaddy's nameserver change propagates.
+4. Test locally from your terminal:
+   ```bash
+   dig zodiaclegal.com A +short
+   # Expected output: 216.24.57.1
+
+   dig www.zodiaclegal.com CNAME +short
+   # Expected output: zodiaclegal-web.onrender.com.
+
+   curl -I https://zodiaclegal.com
+   # Expected output: HTTP/2 200
+   ```
 
 ---
 
-## Part 5: Post-Cutover SEO, Search Console & Google Business Profile Checklist
+## Part 4: Post-Cutover SEO, Search Console & Google Business Profile Checklist
 
-### 5.1 — Sitemap & Indexing Submission (Day 1)
-
-- [ ] Verify domain ownership in **Google Search Console** (`https://zodiaclegal.com`) and **Bing Webmaster Tools**.
-- [ ] Submit `https://zodiaclegal.com/sitemap-index.xml`.
-- [ ] Use URL Inspection in Google Search Console to request priority re-indexing of `/`, `/about/`, `/practice-areas/`, and `/contact/` (which previously returned Wix's `404 ConnectYourDomain` error).
-- [ ] Verify that legacy Wix paths (`/services`, `/about-us`, `/contact-us`, `/blog`) return `HTTP 301` to their new destinations:
-  ```bash
-  curl -I https://zodiaclegal.com/services
-  ```
-- _(Note: Do NOT use the Google Search Console "Change of Address" tool because the domain `zodiaclegal.com` remains unchanged.)_
-
-### 5.2 — Google Business Profile (Local SEO — Lucknow)
-
-- [ ] Claim/update the **Google Business Profile** for **Zodiac Legal** in Vikas Nagar, Lucknow (`226022`).
-- [ ] Ensure exact character-for-character NAP parity between Google Business Profile, Justdial, IndiaMART, and `src/data/siteConfig.ts`.
-- [ ] Set Primary Category to **Corporate Office / Legal Services / Law Firm** (as applicable) and Website URL to `https://zodiaclegal.com/`.
-- [ ] Monitor Google Search Console Coverage & 404 reports weekly for the first 30 days.
+1. [ ] Verify domain ownership in **Google Search Console** (`https://zodiaclegal.com`) and **Bing Webmaster Tools**.
+2. [ ] Submit `https://zodiaclegal.com/sitemap-index.xml`.
+3. [ ] Request priority indexing in Google Search Console for `/`, `/about/`, `/team/`, `/practice-areas/`, and `/contact/` to clear Wix's old `404 ConnectYourDomain` cache from Google Search results.
+4. [ ] Update the **Google Business Profile** for **Zodiac Legal** (Vikas Nagar, Lucknow `226022`) with `https://zodiaclegal.com/`.
